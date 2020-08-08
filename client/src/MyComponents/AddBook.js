@@ -38,12 +38,12 @@ class AddBook extends Component{
     render(){
         return(
             <React.Fragment >
-                <div className="container-fluid addbook">
+                <div className="container-fluid">
                 <div className="container" style={{padding:'100px 0px 0px 0px'}} >
-                    <h2 align="center">Add Books In Store</h2>
+                    <h5 align="center" style={{fontWeight:'bold'}}>Add Books In Store</h5>
                     <p align="center">Contribute your book in our store to help others</p>
-                    <hr style={{border:'1px solid silver'}}/>
-                    <div className="row mt-2">
+                    <hr className="mb-1" />
+                    <div className="row">
                         <div className="col-12 col-md-6">
                             <Form>
                                 <FormGroup>
@@ -86,13 +86,16 @@ class AddBook extends Component{
                             <Form>
                                 <FormGroup>
                                     <Label htmlFor="Description" className="ml-1"><b>Description</b></Label>
-                                    <Input type="textarea" onChange={this.onStateChange} rows="3" name="Description" id="Description" value={this.state.Description} placeholder="Describe your book...." />
+                                    <Input type="textarea" onChange={this.onStateChange} rows="2" name="Description" id="Description" value={this.state.Description} placeholder="Describe your book...." />
                                 </FormGroup>
                             </Form>
                         </div>
                     </div>
                     <div className="row justify-content-center">
-                        <Button onClick={this.onSubmit} type="submit" color="success">SUBMIT</Button>
+                            <Button onClick={this.onSubmit} type="submit"
+                                style={{ background: '#00bcd4', color: 'white', border: 'none' }} >
+                                SUBMIT
+                            </Button>
                     </div>
                     <br/>   
                 </div>

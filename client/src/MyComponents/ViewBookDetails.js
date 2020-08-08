@@ -61,26 +61,28 @@ import {Link} from 'react-router-dom';
     
                                 <div className="col-12 col-md-8">
                                     <Card className="bookdet"  outline color="info">
-                                    <CardHeader  style={{backgroundColor:'turquoise', 'text-align':'center'}}><strong>Book Details</strong></CardHeader>
+                                        <CardHeader style={{ backgroundColor: 'turquoise', textAlign: 'center' }}>
+                                            <strong>Book Details</strong>
+                                        </CardHeader>
                                         <CardBody  >
                                             <dl className="row" >
-                                                <dt class="col-6">Book name</dt>
-                                                <dd class="col-6">{ this.props.passSelectedBook.name}</dd>
+                                                <dt className="col-6">Book name</dt>
+                                                <dd className="col-6">{ this.props.passSelectedBook.name}</dd>
     
-                                                <dt class="col-6">Author</dt>
-                                                <dd class="col-6">{ this.props.passSelectedBook.author}</dd>
+                                                <dt className="col-6">Author</dt>
+                                                <dd className="col-6">{ this.props.passSelectedBook.author}</dd>
     
-                                                <dt class="col-6">Price</dt>
-                                                <dd class="col-6">{ this.props.passSelectedBook.price}/-</dd>
+                                                <dt className="col-6">Price</dt>
+                                                <dd className="col-6">{ this.props.passSelectedBook.price}/-</dd>
     
-                                                <dt class="col-6">BookID</dt>
-                                                <dd class="col-6">{ this.props.passSelectedBook.BookID}</dd>
+                                                <dt className="col-6">BookID</dt>
+                                                <dd className="col-6">{ this.props.passSelectedBook.BookID}</dd>
     
-                                                <dt class="col-6">Description</dt>
-                                                <dd class="col-6">{ this.props.passSelectedBook.Description}</dd>
+                                                <dt className="col-6">Description</dt>
+                                                <dd className="col-6">{ this.props.passSelectedBook.Description}</dd>
 
-                                                <dt class="col-6">Edition</dt>
-                                                <dd class="col-6">{ this.props.passSelectedBook.edition}</dd>
+                                                <dt className="col-6">Edition</dt>
+                                                <dd className="col-6">{ this.props.passSelectedBook.edition}</dd>
                                             
                                             </dl>
     

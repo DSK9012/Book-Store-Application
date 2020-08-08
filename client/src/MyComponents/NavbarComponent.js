@@ -1,7 +1,8 @@
 import  React,{Component} from 'react';
 import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem} from 'reactstrap';
-import {NavLink} from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookReader } from '@fortawesome/free-solid-svg-icons';
 
 class NavComponent extends Component{
 
@@ -10,7 +11,8 @@ class NavComponent extends Component{
 
         this.toggleNav=this.toggleNav.bind(this);
         this.state={
-            isNavOpen:false
+            isNavOpen: false,
+            activeItem:'home'
         }
 
         
@@ -21,26 +23,29 @@ class NavComponent extends Component{
             isNavOpen: !this.state.isNavOpen
         });
     }
-    render(){
+    render() {
+        let { activeItem } = this.state;
         return(
             <React.Fragment>
-            <Navbar dark color="info" className=" fixed-top navborder" expand="lg">
+            <Navbar light className="fixed-top navborder" expand="lg" style={{ background:'white'}}>
                 <div className="container">
-                    <NavbarBrand href="/"><img src="/Images/Wipro.jpg"  alt="WBS" width="50" height="40" className="wipimg"/>Wipro Book Store</NavbarBrand>
+                        <NavbarBrand href="/" style={{display:'flex', alignItems:'center'}}>
+                            <FontAwesomeIcon icon={faBookReader} size="lg" border style={{ background: 'linear-gradient(silver, #00bcd4)', borderRadius:'50%', width:'65px', color:'white',borderColor:'white' }} />
+                            &nbsp;&nbsp;
+                            <h4 style={{fontFamily:'cursive', fontWeight:'bold'}}>Book Store</h4>
+                        </NavbarBrand>
                     <NavbarToggler onClick={this.toggleNav} />
                     <Collapse isOpen={this.state.isNavOpen} navbar >
-                        <Nav className="mr-auto ml-4 navsize" navbar>
-                            <NavItem className="mr-1">
-                                <NavLink className="nav-link" to='/Home'><i className="fa fa-home"></i>Home</NavLink>
+                            <Nav className="ml-auto navsize" navbar style={{ fontWeight: 'bold' }}>
+                                <NavItem className="mr-1" >
+                                    <NavLink className="nav-link" to='/Home' onClick={() => this.setState({ activeItem: 'home' })} >
+                                        H<span style={{ borderBottom: activeItem==='home' && '3px solid #00bcd4' }}>om</span>e
+                                    </NavLink>
                             </NavItem>
                             <NavItem className="mr-1">
-                                <NavLink className="nav-link" to='/Add Books'><i class="fa fa-book" aria-hidden="true"></i>Add Books</NavLink>
-                            </NavItem>
-                            <NavItem className="mr-1">
-                                <NavLink className="nav-link" to='/Update Book'><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Update Book</NavLink>
-                            </NavItem>
-                            <NavItem className="mr-1">
-                                <NavLink className="nav-link" to='/Delete Book'><i class="fa fa-trash-o" aria-hidden="true"></i>Delete Book</NavLink>
+                                    <NavLink className="nav-link" to='/Add Books' onClick={() => this.setState({ activeItem: 'addbooks' })}>
+                                        Ad<span style={{ borderBottom:activeItem==='addbooks' && '3px solid #00bcd4'}}>d Boo</span>ks
+                                    </NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>

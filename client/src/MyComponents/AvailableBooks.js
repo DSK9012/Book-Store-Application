@@ -16,8 +16,13 @@ import {    Card,
             Button,
             InputGroup,
             InputGroupAddon,
-            Input} from 'reactstrap';
+            Input,
+            Col,
+            Row,
+            Container} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 class AvailableBooks extends Component{
@@ -26,7 +31,8 @@ class AvailableBooks extends Component{
         super(props);
 
         this.state={
-            book:this.props.books
+            showCheckbox: false,
+            selectedBooks:[]
         }
         this.deletebook=this.deletebook.bind(this);
     }
@@ -35,44 +41,56 @@ class AvailableBooks extends Component{
         alert("Please confirm before you delete the books in store.\n Click \"Ok\" to delete the book.");
     }
 
+    handleSelect = (e, id) => {
+        console.log(e)
+        e.stopPropagation()
+         
+        
 
-    render(){
+    }
 
-        return(
-            <Card  key={this.state.book.id}  className="bookcard" >
-            <CardImg  width="100%" height="250px" src={this.state.book.image} />
-            <CardImgOverlay ><input className="chkboxsize" type="checkbox"/></CardImgOverlay>
-            <CardBody >
-                <CardTitle><strong>{this.state.book.name}</strong></CardTitle>
-                <CardSubtitle>{this.state.book.author}</CardSubtitle>
-                <CardSubtitle>Price : {this.state.book.price}/-</CardSubtitle><br/>
-                <div className="container">
-                    <ButtonGroup >
-                        <Link to={`/Home/${this.state.book.id}`} className="btnbook">
-                            <Button style={{'border-top-right-radius': '0px', 'border-bottom-right-radius': '0px'}} outline color="dark">
-                                <b>Book Details</b>
-                            </Button>
-                        </Link>
-                        <Link to={`/Home/Updatebook/${this.state.book.id}`} className="btnbook">
-                            <Button style={{'border-radius':'0px'}} outline color="success">
-                                <b>Update</b>
-                            </Button>
-                        </Link>
-                        <Button outline onClick={this.deletebook} color="danger"><b>Delete</b></Button>
-                    </ButtonGroup>
-                </div>
-            </CardBody>
-            </Card>
+    render() {
+        console.log(this.state);
+        let { id, image, name, author, price } = this.props.books;
+        let { showCheckbox, selectedBooks } = this.state;
+        return (
+            <React.Fragment>
+                <Link to={`/Home/${id}`} style={{ textDecoration: 'none' }}
+                    onMouseEnter={() => this.setState({ showCheckbox: true })}
+                    onMouseLeave={() => this.setState({ showCheckbox: false })}
+                >
+                    <Card key={id} className="bookcard" >
+                    <CardImg src={image} width="100%" height="180px" />
+                    <CardImgOverlay style={{ padding:'10px 15px'}}>
+                            {(showCheckbox || (selectedBooks.length>0 && selectedBooks.indexOf(id)!==-1)) &&
+                                <input type="checkbox" className="checkbox" onChange={this.handleSelect}  />
+                            }
+                    </CardImgOverlay>
+                    <CardBody className="p-3" >
+                        <CardTitle><strong>{name}</strong></CardTitle>
+                        <CardSubtitle>{author}</CardSubtitle>
+                            <CardSubtitle>Price : {price}/-</CardSubtitle>
+                                <Row className="ml-2 mr-2 pt-1" style={{ textAlign: 'center', boxShadow:'none' }}>
+                                    <Col className="btn"  >
+                                        <FontAwesomeIcon icon={faEdit} color="grey" style={{boxShadow:'none'}} />
+                                    </Col>
+                                    <Col className="btn" >
+                                        <FontAwesomeIcon icon={faTrash} color="grey" style={{ boxShadow: 'none' }} />
+                                    </Col>
+                                </Row>
+                    </CardBody>
+                    </Card>
+                </Link>
+            </React.Fragment>
         );
     }
-    
 }
 
     const ShowBooks=(props)=>{
     
-        const showBooks=props.passBooks.map((book)=>{
+        const showBooks=props.passBooks.map((book, index)=>{
             return(
-                <div className="col-12 col-md-6 col-lg-4 mt-3"> 
+                <div key={index} className="col-12 col-md-6 col-lg-3"> 
                     <AvailableBooks books={book}/>
                 </div>      
                 );
@@ -80,19 +98,17 @@ class AvailableBooks extends Component{
     
             return(
                 <div className="container ">
-                    <div className="row bookhome">
+                    <div className="row" style={{marginTop:'100px'}}>
                         <div className="col-12 col-md-4 ">
-                            <h2 ><b>Available Books in store</b></h2>
+                            <h5 style={{fontWeight:'bold'}}>Available Books</h5>
                         </div>
-                        <div className="col-12 col-md-5 offset-md-3 " >
-                        <InputGroup >
+                        <div className="col-12 col-md-4 offset-md-4" style={{ display: 'flex', alignItems: 'center' }} >
                             <Input placeholder="Search books..." type="text"/>
-                            <InputGroupAddon addonType="append"><Button color="secondary">Search</Button></InputGroupAddon>
-                        </InputGroup>
+                            <FontAwesomeIcon icon={faSearch} color="#00bcd4" style={{ position: 'absolute', right: '30px'}} />
                         </div>
                     </div>
                     <hr style={{border:'1px ridge'}}/>
-                    <div className="row mt-2">
+                    <div className="row mt-1">
                         { showBooks }
                     </div>
                 </div>
