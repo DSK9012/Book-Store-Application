@@ -34,9 +34,9 @@ import {Link} from 'react-router-dom';
                 {
                  
                     return(
-                        <div className="container" style={{padding:'100px 0px 0px 0px'}}>
+                        <div className="container" style={{marginTop:'100px'}}>
                             <div className="row mt-0">
-                                <div className="col-12">
+                                <div className="col-12" style={{padding:'0'}}>
                                     <Breadcrumb>
                                         <BreadcrumbItem>
                                             <Link to="/Home" className="bredhome">Home</Link>
@@ -47,7 +47,7 @@ import {Link} from 'react-router-dom';
                                     </Breadcrumb>
                                 </div>
                                 <div className="col-12">
-                                    <h2 className="ml-2">{this.props.passSelectedBook.name}</h2>
+                                    <h5 style={{fontWeight:'bold'}}>{this.props.passSelectedBook.name}</h5>
                                     <hr />
                                 </div>
                             </div>
@@ -85,11 +85,6 @@ import {Link} from 'react-router-dom';
                                                 <dd className="col-6">{ this.props.passSelectedBook.edition}</dd>
                                             
                                             </dl>
-    
-                                            <div align="center">
-                                                <Button className="btnsize1" color="success">Update</Button><br/>
-                                                <Button onClick={this.deletebook} className="btnsize2" color="danger">Delete</Button>
-                                            </div>
     
                                         </CardBody>                
                                     </Card>

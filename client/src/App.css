@@ -17,20 +17,18 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
+  background-color: white;
 }
 
 .bookcard{
   text-decoration: none;
   color: black;
+  cursor: default;
 }
 
-.btn{
-  box-shadow: none;
-}
-
-.bookcard :hover{
+.bookcard:hover{
   text-decoration: none;
-  box-shadow: 2px 2px 5px 2px gray;
+  box-shadow: 2px 2px 8px 3px gray;
 }
 
 

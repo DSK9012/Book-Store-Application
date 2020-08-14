@@ -61,21 +61,32 @@ class AvailableBooks extends Component{
                 >
                     <Card key={id} className="bookcard" >
                     <CardImg src={image} width="100%" height="180px" />
-                    <CardImgOverlay style={{ padding:'10px 15px'}}>
-                            {(showCheckbox || (selectedBooks.length>0 && selectedBooks.indexOf(id)!==-1)) &&
-                                <input type="checkbox" className="checkbox" onChange={this.handleSelect}  />
-                            }
-                    </CardImgOverlay>
                     <CardBody className="p-3" >
-                        <CardTitle><strong>{name}</strong></CardTitle>
+                        <CardTitle style={{display:'flex', alignItems:'center', fontWeight:'bold'}}>
+                            {name}
+                            {(showCheckbox || (selectedBooks.length>0 && selectedBooks.indexOf(id)!==-1)) &&
+                            <input  type="checkbox"
+                                    className="checkbox"
+                                    onChange={this.handleSelect}
+                                    onClick={e=>e.stopPropagation()}
+                                    style={{position:'absolute', right:'15px'}}
+                            />
+                            }
+                        </CardTitle>
                         <CardSubtitle>{author}</CardSubtitle>
                             <CardSubtitle>Price : {price}/-</CardSubtitle>
-                                <Row className="ml-2 mr-2 pt-1" style={{ textAlign: 'center', boxShadow:'none' }}>
-                                    <Col className="btn"  >
-                                        <FontAwesomeIcon icon={faEdit} color="grey" style={{boxShadow:'none'}} />
+                                <Row className="ml-2 mr-2 pt-1" style={{ textAlign: 'center'}}>
+                                    <Col>
+                                        <FontAwesomeIcon    icon={faEdit} 
+                                                            color="#00bcd4"
+                                                            style={{cursor:'pointer'}} 
+                                        />
                                     </Col>
-                                    <Col className="btn" >
-                                        <FontAwesomeIcon icon={faTrash} color="grey" style={{ boxShadow: 'none' }} />
+                                    <Col>
+                                        <FontAwesomeIcon    icon={faTrash} 
+                                                            color="crimson"
+                                                            style={{cursor:'pointer'}} 
+                                        />
                                     </Col>
                                 </Row>
                     </CardBody>

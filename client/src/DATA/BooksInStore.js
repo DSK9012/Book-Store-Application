@@ -28,6 +28,16 @@ export const Books=[
             Description:'Create your own web world',
             BookID:1003,
             edition:'14'
+        },
+        {
+            id:4,
+            name:'JS Algorithms',
+            image:'/Images/Js Algorithms.jpg',
+            author:'DSK',
+            price:300,
+            Description:'Explore more in through Algorithms',
+            BookID:1004,
+            edition:'2'
         }
     ]
 
