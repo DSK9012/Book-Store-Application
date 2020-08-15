@@ -61,7 +61,7 @@ import {Link} from 'react-router-dom';
     
                                 <div className="col-12 col-md-8">
                                     <Card className="bookdet"  outline color="info">
-                                        <CardHeader style={{ backgroundColor: 'turquoise', textAlign: 'center' }}>
+                                        <CardHeader style={{ backgroundColor: '#00bcd4', color:'white', textAlign: 'center' }}>
                                             <strong>Book Details</strong>
                                         </CardHeader>
                                         <CardBody  >
