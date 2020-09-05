@@ -28,7 +28,7 @@
 
 .bookcard:hover{
   text-decoration: none;
-  box-shadow: 2px 2px 8px 3px gray;
+  box-shadow: 0px 0px 10px 2px gray;
 }
 
 
@@ -60,3 +60,4 @@
 .bredhome:hover{
   text-decoration: none;
 }
+

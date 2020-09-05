@@ -23,7 +23,8 @@ import {    Card,
 import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import {connect} from 'react-redux';
+import {getAllBooks} from '../Redux/Actions/Books';
 
 class AvailableBooks extends Component{
 
@@ -37,22 +38,24 @@ class AvailableBooks extends Component{
         this.deletebook=this.deletebook.bind(this);
     }
 
+    componentDidMount(){
+        // this.props.books();
+    }
+
     deletebook(){
         alert("Please confirm before you delete the books in store.\n Click \"Ok\" to delete the book.");
     }
 
     handleSelect = (e, id) => {
         console.log(e)
-        e.stopPropagation()
-         
-        
-
+        e.stopPropagation();
     }
 
     render() {
         console.log(this.state);
         let { id, image, name, author, price } = this.props.books;
         let { showCheckbox, selectedBooks } = this.state;
+        let {books}=this.props;
         return (
             <React.Fragment>
                 <Link to={`/Home/${id}`} style={{ textDecoration: 'none' }}
@@ -60,7 +63,7 @@ class AvailableBooks extends Component{
                     onMouseLeave={() => this.setState({ showCheckbox: false })}
                 >
                     <Card key={id} className="bookcard" >
-                    <CardImg src={image} width="100%" height="180px" />
+                    <CardImg src={`/images/${name}.jpg`} width="100%" height="180px" />
                     <CardBody className="p-3" >
                         <CardTitle style={{display:'flex', alignItems:'center', fontWeight:'bold'}}>
                             {name}
@@ -99,14 +102,14 @@ class AvailableBooks extends Component{
 
     const ShowBooks=(props)=>{
     
-        const showBooks=props.passBooks.map((book, index)=>{
+        const showBooks=props.books.length>0 && props.books.map((book, index)=>{
             return(
                 <div key={index} className="col-12 col-md-6 col-lg-3"> 
                     <AvailableBooks books={book}/>
                 </div>      
                 );
             })
-    
+            console.log(props);
             return(
                 <div className="container ">
                     <div className="row" style={{marginTop:'100px'}}>
@@ -128,5 +131,8 @@ class AvailableBooks extends Component{
     }
         
 
+const mapStateToProps=state=>({
+    books:state.books.allBooks
+});
 
-export default ShowBooks;
+export default connect(mapStateToProps, {getAllBooks})(ShowBooks);

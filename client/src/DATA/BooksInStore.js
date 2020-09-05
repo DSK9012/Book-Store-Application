@@ -2,7 +2,7 @@ export const Books=[
         {
             id:1,
             name:'C Language',
-            image:'/Images/Let Us C.png',
+            image:'/Images/C Language.jpg',
             author:'Yeswant P Kanetkar',
             price:250,
             Description:'Start coding with basics of C',
@@ -22,7 +22,7 @@ export const Books=[
         {
             id:3,
             name:'HTML CSS JS',
-            image:'/Images/HTML_CSS_JS.jpg',
+            image:'/Images/HTML CSS JS.jpg',
             author:'W3c',
             price:300,
             Description:'Create your own web world',

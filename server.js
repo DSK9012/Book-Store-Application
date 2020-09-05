@@ -15,9 +15,7 @@ app.use(morgan('dev'));
 app.use(express.json({extended:false}));
 
 // routes
-app.get('/', (req, res)=>{
-    return res.send('Book app server');
-})
+app.use('/api/books', require('./serverRoutes/books/booksRouter'));
 
 // database connection
 const connectDB=async ()=>{
@@ -29,11 +27,11 @@ const connectDB=async ()=>{
                 useNewUrlParser: true, 
                 useCreateIndex: true 
             })
-            .then(()=>console.log(chalk.green(`DB connected to ${mongoPort}`)))
-            .catch(error=>console.log(chalk.red(error.message)));
+            .then(()=>console.log(chalk.bgGreen.bold(`DB connected to ${mongoPort}`)))
+            .catch(error=>console.log(chalk.bgRed.bold(error.message)));
     } catch (error) {
-        console.log(chalk.red(error.message));
-        // terminate process
+        console.log(chalk.bgRed.bold(error.message));
+        // terminate db connection process
         process.exit(1);
     }
 }
@@ -41,4 +39,4 @@ connectDB();
 
 // server connection
 const serverPort=process.env.PORT || 5000;
-app.listen(serverPort, ()=>console.log(chalk.green(`Book store app listening at ${serverPort}`))); 
+app.listen(serverPort, ()=>console.log(chalk.bgGreen.bold(`Book store app listening at ${serverPort}`))); 

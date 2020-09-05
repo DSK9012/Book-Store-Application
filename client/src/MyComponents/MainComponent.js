@@ -10,6 +10,8 @@ import BookUpdate from './BookUpdate';
 import DeleteBook from './DeleteBook';
 import NavComponent from './NavbarComponent';
 import {Switch, Route, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getAllBooks} from '../Redux/Actions/Books';
 import '../App.css';
 
 class Main extends Component {
@@ -24,7 +26,9 @@ class Main extends Component {
   }
 
   
-
+componentDidMount(){
+  this.props.getAllBooks();
+}
 
 
 
@@ -48,7 +52,7 @@ class Main extends Component {
         
            
 
-            <Route exact path="/Home" component={()=><AvailableBooks passBooks={this.state.BooksFromStore}/>} />   
+            <Route exact path="/Home" component={()=><AvailableBooks books={this.props.allBooks}/>} />   
             <Route exact path='/Home/:bookId' component={Bookdet} />
             <Route exact path="/Home/Updatebook/:bookId" component={bookupdate} />
             <Route exact path="/Add Books" component={AddBook}/>
@@ -66,5 +70,8 @@ class Main extends Component {
   }
 }
 
+const mapStateToProps=state=>({
+  books:state.books.allBooks
+});
 
-export default Main;
+export default connect(mapStateToProps, {getAllBooks})(Main);
