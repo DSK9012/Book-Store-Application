@@ -25,7 +25,7 @@ export const getSelectedBook=bookId=>async dispatch=>{
         type:booksActions.BOOKS_LOADING
     });
     try {
-        const result=await axios.get(`/api/books/fetchbookdetails/${bookId}`);
+        const result=await axios.get(`http://localhost:5000/api/books/fetchbookdetails/${bookId}`);
         dispatch({
             type:booksActions.GET_SPECIFIC_BOOK,
             payload:result.data

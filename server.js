@@ -1,42 +1,36 @@
+require("dotenv").config();
 const express=require('express');
 const cors=require('cors');
-const mongoose = require('mongoose');
 const chalk=require('chalk');
 const morgan=require('morgan');
 const app=express();
+const connectToMongoDB=require('./DBConnections');
+const serverConfig=require('./serverConfig');
 
-// allow cors
+// Allow Cors
 app.use(cors());
 
-// http requets logger
+// Http Requests Logger
 app.use(morgan('dev')); 
 
-//intializing express middleware
+// Intializing Express Middleware
 app.use(express.json({extended:false}));
 
-// routes
+// Routes
 app.use('/api/books', require('./serverRoutes/books/booksRouter'));
 
-// database connection
-const connectDB=async ()=>{
-    try {
-        const mongoPort='mongodb://localhost:27017/bookstore';
-        await mongoose.connect(
-            mongoPort, 
-            {   useUnifiedTopology: true, 
-                useNewUrlParser: true, 
-                useCreateIndex: true 
-            })
-            .then(()=>console.log(chalk.bgGreen.bold(`DB connected to ${mongoPort}`)))
-            .catch(error=>console.log(chalk.bgRed.bold(error.message)));
-    } catch (error) {
-        console.log(chalk.bgRed.bold(error.message));
-        // terminate db connection process
-        process.exit(1);
-    }
-}
-connectDB();
+// Database Connection
+connectToMongoDB();
 
-// server connection
-const serverPort=process.env.PORT || 5000;
+// Server Connection
+const serverPort=serverConfig.serverPort;
 app.listen(serverPort, ()=>console.log(chalk.bgGreen.bold(`Book store app listening at ${serverPort}`))); 
+
+// Production Mode
+if(process.env.NODE_ENV.toLowerCase()==="production") {
+  // Serve Any Static Files
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+}

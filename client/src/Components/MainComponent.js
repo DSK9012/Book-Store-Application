@@ -1,14 +1,13 @@
 //This is a Container Component(parent component), which maintains state of our React Application
 
-import React,{Component} from 'react';
-import {Books} from '../DATA/BooksInStore';
+import React, {Component} from 'react';
 import AvailableBooks from './AvailableBooks';
 import BookDetails from './ViewBookDetails';
 import AddBook from './AddBook';
-import UpdateBook from './UpdateBook';
+// import UpdateBook from './UpdateBook';
 import BookUpdate from './BookUpdate';
-import DeleteBook from './DeleteBook';
-import NavComponent from './NavbarComponent';
+// import DeleteBook from './DeleteBook';
+import NavComponent from './Navbar/Navbar';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getAllBooks} from '../Redux/Actions/Books';
@@ -19,16 +18,12 @@ class Main extends Component {
   constructor(props){
     super(props);
 
-    this.state={
-      BooksFromStore: Books,
-    }
-
   }
 
   
-componentDidMount(){
-  this.props.getAllBooks();
-}
+  componentDidMount(){
+    this.props.getAllBooks();
+  }
 
 
 
@@ -47,24 +42,17 @@ componentDidMount(){
     };
     return (
         <React.Fragment>
-           <NavComponent />
-        <Switch>
-        
-           
-
+          <NavComponent />
+          <Switch>
             <Route exact path="/Home" component={()=><AvailableBooks books={this.props.allBooks}/>} />   
             <Route exact path='/Home/:bookId' component={Bookdet} />
             <Route exact path="/Home/Updatebook/:bookId" component={bookupdate} />
             <Route exact path="/Add Books" component={AddBook}/>
-            <Route exact path="/Update Book" component={UpdateBook}/> 
-            <Route exact path="/Delete Book" component={DeleteBook}/>
+            {/* <Route exact path="/Update Book" component={UpdateBook}/>  */}
+            {/* <Route exact path="/Delete Book" component={DeleteBook}/> */}
             
             <Redirect to="/Home"/>
-            
-            
-
-        
-        </Switch>
+          </Switch>
         </React.Fragment>
     );
   }

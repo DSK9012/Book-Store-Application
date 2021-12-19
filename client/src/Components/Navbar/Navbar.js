@@ -6,18 +6,16 @@ import { faBookReader } from '@fortawesome/free-solid-svg-icons';
 
 class NavComponent extends Component{
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
 
         this.toggleNav=this.toggleNav.bind(this);
         this.state={
             isNavOpen: false,
             activeItem:'home'
         }
-
-        
     }
-
+    
     toggleNav(){
         this.setState({
             isNavOpen: !this.state.isNavOpen

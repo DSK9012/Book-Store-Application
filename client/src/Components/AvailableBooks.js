@@ -53,21 +53,21 @@ class AvailableBooks extends Component{
 
     render() {
         console.log(this.state);
-        let { id, image, name, author, price } = this.props.books;
+        let { _id, image, name, author, price } = this.props.books;
         let { showCheckbox, selectedBooks } = this.state;
         let {books}=this.props;
         return (
             <React.Fragment>
-                <Link to={`/Home/${id}`} style={{ textDecoration: 'none' }}
+                <Link to={`/Home/${_id}`} style={{ textDecoration: 'none' }}
                     onMouseEnter={() => this.setState({ showCheckbox: true })}
                     onMouseLeave={() => this.setState({ showCheckbox: false })}
                 >
-                    <Card key={id} className="bookcard" >
+                    <Card key={_id} className="bookcard" >
                     <CardImg src={`/images/${name}.jpg`} width="100%" height="180px" />
                     <CardBody className="p-3" >
                         <CardTitle style={{display:'flex', alignItems:'center', fontWeight:'bold'}}>
                             {name}
-                            {(showCheckbox || (selectedBooks.length>0 && selectedBooks.indexOf(id)!==-1)) &&
+                            {(showCheckbox || (selectedBooks.length>0 && selectedBooks.indexOf(_id)!==-1)) &&
                             <input  type="checkbox"
                                     className="checkbox"
                                     onChange={this.handleSelect}
@@ -80,15 +80,17 @@ class AvailableBooks extends Component{
                             <CardSubtitle>Price : {price}/-</CardSubtitle>
                                 <Row className="ml-2 mr-2 pt-1" style={{ textAlign: 'center'}}>
                                     <Col>
-                                        <FontAwesomeIcon    icon={faEdit} 
-                                                            color="#00bcd4"
-                                                            style={{cursor:'pointer'}} 
+                                        <FontAwesomeIcon    
+                                            icon={faEdit} 
+                                            color="#00bcd4"
+                                            style={{cursor:'pointer'}} 
                                         />
                                     </Col>
                                     <Col>
-                                        <FontAwesomeIcon    icon={faTrash} 
-                                                            color="crimson"
-                                                            style={{cursor:'pointer'}} 
+                                        <FontAwesomeIcon    
+                                            icon={faTrash} 
+                                            color="crimson"
+                                            style={{cursor:'pointer'}} 
                                         />
                                     </Col>
                                 </Row>
