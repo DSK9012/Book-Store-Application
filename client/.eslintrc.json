@@ -1,0 +1,68 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jest/recommended",
+    "plugin:testing-library/react",
+    "airbnb",
+    "prettier"
+  ],
+  "parserOptions": {
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["import", "react", "jsx-a11y", "prettier"],
+  "root": true,
+  "rules": {
+    "react/destructuring-assignment": 1,
+    "no-trailing-spaces": 2,
+    "indent": [2, 2],
+    "quotes": [2, "single"],
+    "import/no-unresolved": 0,
+    "react/react-in-jsx-scope": 0,
+    "import/order": [
+      2,
+      {
+        "groups": ["builtin", "external", "internal", "sibling", "parent", "index"]
+      }
+    ],
+    "no-unused-vars": 2,
+    "no-unused-expressions": 2,
+    "object-curly-spacing": [1, "always"],
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "semi": 2,
+    "no-param-reassign": 0,
+    "no-use-before-define": 0,
+    "no-console": [1, { "allow": ["warn", "error"] }]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"],
+        "paths": ["client/src/"]
+      }
+    }
+  }
+}
