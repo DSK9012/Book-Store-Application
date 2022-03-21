@@ -1,11 +1,12 @@
-import { BrowserRouter } from 'react-router-dom';
-import Main from 'components/Main';
+import { Navigate, Route, Routes } from 'react-router';
+import Home from 'components/Home';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Main />
-    </BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Navigate replace to='/home' />} />
+      <Route path='/home' element={<Home />} />
+    </Routes>
   );
 }
 

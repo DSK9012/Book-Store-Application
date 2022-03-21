@@ -28,6 +28,7 @@
   "plugins": ["import", "react", "jsx-a11y", "prettier"],
   "root": true,
   "rules": {
+    "eol-last": 2,
     "react/destructuring-assignment": 1,
     "no-trailing-spaces": 2,
     "indent": [2, 2],
@@ -40,7 +41,7 @@
         "groups": ["builtin", "external", "internal", "sibling", "parent", "index"]
       }
     ],
-    "no-unused-vars": 2,
+    "no-unused-vars": 1,
     "no-unused-expressions": 2,
     "object-curly-spacing": [1, "always"],
     "react/jsx-filename-extension": [
@@ -52,7 +53,8 @@
     "semi": 2,
     "no-param-reassign": 0,
     "no-use-before-define": 0,
-    "no-console": [1, { "allow": ["warn", "error"] }]
+    "no-console": [1, { "allow": ["warn", "error"] }],
+    "react/jsx-pascal-case": [0]
   },
   "settings": {
     "react": {
