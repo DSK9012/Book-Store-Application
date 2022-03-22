@@ -4,10 +4,14 @@ import bookStoreLogo from 'assets/images/book-store-logo.svg';
 
 const $Header = styled.header({
   width: '100%',
-  padding: '14px 80px',
+  padding: '14px 0',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  position: 'sticky',
+  top: '0',
+  zIndex: '5',
+  backgroundColor: 'white',
 });
 
 const $Title = styled.div({
