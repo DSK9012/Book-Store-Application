@@ -1,12 +1,12 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 import Header from './Header/Header';
 import RenderBooks from './RenderBooks';
 
-const $Container = styled.div({
-  padding: '0 32px 16px',
-  margin: '0 auto',
-  maxWidth: '1150px',
-});
+const $Container = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 4, 2),
+  margin: theme.spacing(0, 'auto'),
+  maxWidth: theme.spacing(143.75),
+}));
 
 export default function Home() {
   return (

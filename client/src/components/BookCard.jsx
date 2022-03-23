@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import {
   BookmarkAdd,
   BookmarkAddOutlined,
@@ -8,99 +7,99 @@ import {
   Share,
   ShareOutlined,
 } from '@mui/icons-material';
-import { Rating } from '@mui/material';
+import { Rating, styled } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import readingBook from 'assets/images/book-reading.jpg';
 
-const $Card = styled.div({
+const $Card = styled('div')(({ theme }) => ({
   width: '100%',
-  height: '320px',
+  height: theme.spacing(40),
   border: '1.3px solid rgba(0, 56, 101, 0.1)',
-  borderRadius: '4px',
+  borderRadius: theme.spacing(0.5),
   display: 'flex',
   flexDirection: 'column',
   cursor: 'pointer',
-});
+}));
 
-const $ImgContainer = styled.div({
+const $ImgContainer = styled('div')(({ theme }) => ({
   position: 'relative',
-  height: '135px',
-  backgroundColor: '#fafafa',
-});
+  height: theme.spacing(17.5),
+  backgroundColor: theme.palette.background.paper,
+}));
 
-const $BookImg = styled.img({
+const $BookImg = styled('img')(({ theme }) => ({
   width: '100%',
   height: '100%',
-  borderRadius: '4px 4px 0 0',
-});
+  borderRadius: theme.spacing(0.5, 0.5, 0, 0),
+}));
 
-const $BookName = styled.h4({
+const $BookName = styled('h4')(({ theme }) => ({
   whiteSpace: 'normal',
   textOverflow: 'ellipsis',
   overflow: 'hidden',
   display: '-webkit-box',
-  '-webkit-line-clamp': '2',
-  '-webkit-box-orient': 'vertical',
-  fontSize: '18px',
-  lineHeight: '1.2',
-  letterSpacing: '0.2',
-  marginBottom: '8px',
-});
+  WebkitLineClamp: '2',
+  WebkitBoxOrient: 'vertical',
+  fontSize: theme.spacing(2.25),
+  lineHeight: 1.2,
+  letterSpacing: 0.2,
+  marginBottom: theme.spacing(1),
+}));
 
-const $Content = styled.div({
+const $Content = styled('div')(({ theme }) => ({
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  padding: '16px 12px 8px',
-});
+  padding: theme.spacing(1.5, 1.5, 1),
+}));
 
-const $TextContent = styled.div({
+const $TextContent = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  fontSize: '14px',
+  fontSize: theme.spacing(1.75),
   color: '#787878',
   letterSpacing: '.5px',
-  lineHeight: '1.4',
+  lineHeight: 1.4,
   '& p': {
-    paddingLeft: '8px',
+    paddingLeft: theme.spacing(1),
   },
-});
+}));
 
-const $RatingContainer = styled.div({
+const $RatingContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  paddingTop: '32px',
-});
+  paddingTop: theme.spacing(4),
+}));
 
-const $Rating = styled.p({
-  fontSize: '16px',
+const $Rating = styled('p')(({ theme }) => ({
+  fontSize: theme.spacing(2),
   fontWeight: 'bold',
   color: '#ad6700',
-  margin: '4px 2px 0 0',
-});
+  margin: theme.spacing(0.5, 0.25, 0, 0),
+}));
 
-const $RatingCount = styled.p({
-  fontSize: '16px',
-  margin: '2px 0 0 2px',
+const $RatingCount = styled('p')(({ theme }) => ({
+  fontSize: theme.spacing(2),
+  margin: theme.spacing(0.25, 0, 0, 0.25),
   color: '#787878',
-});
+}));
 
-const $ImageOverlay = styled.div({
+const $ImageOverlay = styled('div')(({ theme }) => ({
   position: 'absolute',
   height: '100%',
   width: '100%',
-  top: '0',
-  bottom: '0',
+  top: 0,
+  bottom: 0,
   backgroundColor: 'rgba(0,0,0, 0.2)',
-  opacity: '1',
+  opacity: 1,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-evenly',
-  color: 'white',
-});
+  color: theme.palette.common.white,
+}));
 
-const $Icon = styled.div({
+const $Icon = styled('div')({
   '& .outlined': {
     display: 'block',
   },
