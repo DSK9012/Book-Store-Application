@@ -25,6 +25,13 @@ const $ImgContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   height: theme.spacing(17.5),
   backgroundColor: theme.palette.background.paper,
+  '& .img-overlay': {
+    display: 'none',
+  },
+  '&:hover .img-overlay': {
+    display: 'flex',
+    opacity: 1,
+  },
 }));
 
 const $BookImg = styled('img')(({ theme }) => ({
@@ -32,6 +39,47 @@ const $BookImg = styled('img')(({ theme }) => ({
   height: '100%',
   borderRadius: theme.spacing(0.5, 0.5, 0, 0),
 }));
+
+const $ImageOverlay = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  height: '100%',
+  width: '100%',
+  top: 0,
+  bottom: 0,
+  backgroundColor: 'rgba(0,0,0, 0.2)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-evenly',
+  color: theme.palette.common.white,
+  opacity: 0,
+  transition: 'opacity .3s',
+  '& > *': {
+    transform: 'translateY(20px)',
+    transition: 'transform .3s',
+    opacity: 0,
+  },
+  '&:hover > *': {
+    transform: 'translateY(0)',
+    opacity: 0.99,
+  },
+}));
+
+const $Icon = styled('div')({
+  '& .outlined': {
+    display: 'block',
+  },
+  '& .filled': {
+    display: 'none',
+    transform: 'scale(1)',
+  },
+  '&:hover .filled': {
+    display: 'block',
+    transform: 'scale(1.2)',
+  },
+  '&:hover .outlined': {
+    display: 'none',
+  },
+});
 
 const $BookName = styled('h4')(({ theme }) => ({
   whiteSpace: 'normal',
@@ -69,7 +117,7 @@ const $TextContent = styled('div')(({ theme }) => ({
 const $RatingContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  paddingTop: theme.spacing(4),
+  paddingTop: theme.spacing(2),
 }));
 
 const $Rating = styled('p')(({ theme }) => ({
@@ -85,44 +133,25 @@ const $RatingCount = styled('p')(({ theme }) => ({
   color: '#787878',
 }));
 
-const $ImageOverlay = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  height: '100%',
-  width: '100%',
-  top: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(0,0,0, 0.2)',
-  opacity: 1,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-evenly',
-  color: theme.palette.common.white,
+const $BookStatus = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0.5, 1),
+  width: 'fit-content',
+  backgroundColor: '#13cee9',
+  marginTop: theme.spacing(1),
+  color: theme.palette.common.black,
+  fontSize: theme.spacing(1.75),
+  borderRadius: theme.spacing(0.25),
 }));
-
-const $Icon = styled('div')({
-  '& .outlined': {
-    display: 'block',
-  },
-  '& .filled': {
-    display: 'none',
-  },
-  '&:hover .filled': {
-    display: 'block',
-  },
-  '&:hover .outlined': {
-    display: 'none',
-  },
-});
 
 export default function BookCard() {
   return (
     <$Card>
       <$ImgContainer>
         <$BookImg src={readingBook} alt='book-img' />
-        <$ImageOverlay>
+        <$ImageOverlay className='img-overlay'>
           <$Icon>
             <BookmarkAddOutlined className='outlined' sx={{ cursor: 'pointer' }} />
-            <BookmarkAdd className='filled' htmlColor='red' sx={{ cursor: 'pointer' }} />
+            <BookmarkAdd className='filled' htmlColor='#e6e6e6e8' sx={{ cursor: 'pointer' }} />
           </$Icon>
           <$Icon>
             <FavoriteBorderOutlined className='outlined' sx={{ cursor: 'pointer' }} />
@@ -130,7 +159,7 @@ export default function BookCard() {
           </$Icon>
           <$Icon>
             <ShareOutlined className='outlined' sx={{ cursor: 'pointer' }} />
-            <Share className='filled' htmlColor='red' sx={{ cursor: 'pointer' }} />
+            <Share className='filled' htmlColor='#1df4f7' sx={{ cursor: 'pointer' }} />
           </$Icon>
         </$ImageOverlay>
       </$ImgContainer>
@@ -145,6 +174,9 @@ export default function BookCard() {
             <CalendarMonthIcon fontSize='20' />
             <p>22/03/2022</p>
           </$TextContent>
+          <$BookStatus>
+            <p>New</p>
+          </$BookStatus>
         </div>
         <$RatingContainer>
           <$Rating>2.5</$Rating>
