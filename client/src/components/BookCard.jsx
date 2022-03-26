@@ -67,7 +67,7 @@ const $ImageOverlay = styled('div')(({ theme }) => ({
   },
 }));
 
-const $Icon = styled('div')({
+export const $Icon = styled('div')({
   '& .outlined': {
     display: 'block',
   },
@@ -118,20 +118,20 @@ const $TextContent = styled('div')(({ theme }) => ({
   },
 }));
 
-const $RatingContainer = styled('div')(({ theme }) => ({
+export const $RatingContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   paddingTop: theme.spacing(2),
 }));
 
-const $Rating = styled('p')(({ theme }) => ({
+export const $Rating = styled('p')(({ theme }) => ({
   fontSize: theme.spacing(2),
   fontWeight: 'bold',
   color: '#ad6700',
   margin: theme.spacing(0.5, 0.25, 0, 0),
 }));
 
-const $RatingCount = styled('p')(({ theme }) => ({
+export const $RatingCount = styled('p')(({ theme }) => ({
   fontSize: theme.spacing(2),
   margin: theme.spacing(0.25, 0, 0, 0.25),
   color: '#787878',
@@ -147,7 +147,7 @@ const $BookStatus = styled('div')(({ theme }) => ({
   borderRadius: theme.spacing(0.25),
 }));
 
-const $LikesCount = styled('span')(({ theme }) => ({
+export const $LikesCount = styled('span')(({ theme }) => ({
   paddingLeft: theme.spacing(0.5),
   fontSize: theme.spacing(2),
   color: theme.palette.common.white,

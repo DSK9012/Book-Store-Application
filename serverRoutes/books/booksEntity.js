@@ -1,87 +1,89 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
-const booksEntity=mongoose.Schema({
-    bookName:{
-        type:String,
-        default: '',
-        required:true
+const booksEntity = mongoose.Schema(
+  {
+    bookName: {
+      type: String,
+      default: '',
+      required: true,
     },
-    subjectRelated:{
+    subjectRelated: {
+      type: Array,
+      default: [],
+    },
+    authors: {
+      type: Array,
+      default: [],
+    },
+    edition: {
+      type: String,
+      default: '',
+    },
+    description: {
+      type: String,
+      default: '',
+    },
+    relatedClass: {
+      type: Array,
+      default: [],
+    },
+    instituteName: {
+      type: String,
+      default: '',
+    },
+    recommendedTo: {
+      type: Array,
+      default: [],
+    },
+    accessType: {
+      type: String,
+      default: 'private',
+      require: true,
+    },
+    rating: {
+      value: {
+        type: Number,
+        default: 0,
+      },
+      ratedUsers: {
         type: Array,
-        default: []
+        default: [],
+      },
     },
-    authors:{
-        type:Array,
-        default:[]
+    tags: {
+      type: Array,
+      default: [],
     },
-    edition:{
-        type:String,
-        default:''
+    likedUsers: {
+      type: Array,
+      default: [],
     },
-    description:{
-        type:String,
-        default:''
+    viewedUsers: {
+      type: Array,
+      default: [],
     },
-    relatedClass:{
-        type:Array,
-        default:[]
+    bookCoverImgName: {
+      type: String,
+      default: '',
     },
-    instituteName:{
-        type:String,
-        default:''
+    bookDocName: {
+      type: String,
+      default: '',
     },
-    recommendedTo:{
-        type:Array,
-        default:[]
+    createdBy: {
+      type: String,
+      default: '',
+      require: true,
     },
-    accessType:{
-        type:String,
-        default:'private',
-        require: true
+    updatedBy: {
+      type: String,
+      default: '',
+      require: true,
     },
-    rating:{
-        value:{
-            type: Number,
-            default: 0
-        },
-        ratedUsers:{
-            type: Array,
-            default: []
-        }
-    },
-    tags:{
-        type:Array,
-        default: []
-    },
-    likedUsers:{
-        type: Array,
-        default: []
-    },
-    viewedUsers:{
-        type: Array,
-        default: []
-    },
-    bookCoverImgName:{
-        type: String,
-        default:''
-    },
-    bookDocName:{
-        type: String,
-        default: ''
-    },
-    createdBy:{
-        type: String,
-        default:'',
-        require: true
-    },
-    updatedBy:{
-        type: String,
-        default: '',
-        require: true
-    }
-},
-{
-    timestamps: true
-});
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports=mongoose.model('books', booksEntity);
+module.exports = mongoose.model('books', booksEntity);
