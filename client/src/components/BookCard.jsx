@@ -1,16 +1,9 @@
-import {
-  BookmarkAdd,
-  BookmarkAddOutlined,
-  Favorite,
-  FavoriteBorderOutlined,
-  Person,
-  Share,
-  ShareOutlined,
-  CalendarMonth,
-} from '@mui/icons-material';
+import { Person, CalendarMonth } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { Rating, styled } from '@mui/material';
+import { styled } from '@mui/material';
 import readingBook from 'assets/images/book-reading.jpg';
+import RatingContainer from './Utils/RatingContainer';
+import IconSet from './Utils/IconSet';
 
 const $Card = styled('div')(({ theme }) => ({
   width: '100%',
@@ -58,31 +51,12 @@ const $ImageOverlay = styled('div')(({ theme }) => ({
     transform: 'translateY(20px)',
     transition: 'transform .3s',
     opacity: 0,
-    display: 'flex',
-    alignItems: 'center',
   },
   '&:hover > *': {
     transform: 'translateY(0)',
     opacity: 0.99,
   },
 }));
-
-export const $Icon = styled('div')({
-  '& .outlined': {
-    display: 'block',
-  },
-  '& .filled': {
-    display: 'none',
-    transform: 'scale(1)',
-  },
-  '&:hover .filled': {
-    display: 'block',
-    transform: 'scale(1.2)',
-  },
-  '&:hover .outlined': {
-    display: 'none',
-  },
-});
 
 const $BookName = styled('h4')(({ theme }) => ({
   whiteSpace: 'normal',
@@ -118,25 +92,6 @@ const $TextContent = styled('div')(({ theme }) => ({
   },
 }));
 
-export const $RatingContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  paddingTop: theme.spacing(2),
-}));
-
-export const $Rating = styled('p')(({ theme }) => ({
-  fontSize: theme.spacing(2),
-  fontWeight: 'bold',
-  color: '#ad6700',
-  margin: theme.spacing(0.5, 0.25, 0, 0),
-}));
-
-export const $RatingCount = styled('p')(({ theme }) => ({
-  fontSize: theme.spacing(2),
-  margin: theme.spacing(0.25, 0, 0, 0.25),
-  color: '#787878',
-}));
-
 const $BookStatus = styled('div')(({ theme }) => ({
   padding: theme.spacing(0.5, 1),
   width: 'fit-content',
@@ -145,12 +100,6 @@ const $BookStatus = styled('div')(({ theme }) => ({
   color: theme.palette.common.black,
   fontSize: theme.spacing(1.75),
   borderRadius: theme.spacing(0.25),
-}));
-
-export const $LikesCount = styled('span')(({ theme }) => ({
-  paddingLeft: theme.spacing(0.5),
-  fontSize: theme.spacing(2),
-  color: theme.palette.common.white,
 }));
 
 const $Link = styled(Link)({
@@ -164,19 +113,7 @@ export default function BookCard() {
         <$ImgContainer>
           <$BookImg src={readingBook} alt='book-img' />
           <$ImageOverlay className='img-overlay'>
-            <$Icon>
-              <BookmarkAddOutlined className='outlined' sx={{ cursor: 'pointer' }} />
-              <BookmarkAdd className='filled' htmlColor='#e6e6e6e8' sx={{ cursor: 'pointer' }} />
-            </$Icon>
-            <$Icon>
-              <FavoriteBorderOutlined className='outlined' sx={{ cursor: 'pointer' }} />
-              <Favorite className='filled' htmlColor='red' sx={{ cursor: 'pointer' }} />
-              <$LikesCount>99</$LikesCount>
-            </$Icon>
-            <$Icon>
-              <ShareOutlined className='outlined' sx={{ cursor: 'pointer' }} />
-              <Share className='filled' htmlColor='#1df4f7' sx={{ cursor: 'pointer' }} />
-            </$Icon>
+            <IconSet />
           </$ImageOverlay>
         </$ImgContainer>
         <$Content>
@@ -194,11 +131,7 @@ export default function BookCard() {
               <p>New</p>
             </$BookStatus>
           </div>
-          <$RatingContainer>
-            <$Rating>2.5</$Rating>
-            <Rating size='small' name='half-rating' defaultValue={2.5} readOnly precision={0.5} />
-            <$RatingCount> (20)</$RatingCount>
-          </$RatingContainer>
+          <RatingContainer />
         </$Content>
       </$Card>
     </$Link>
