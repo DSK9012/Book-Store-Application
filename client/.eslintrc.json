@@ -54,7 +54,8 @@
     "no-param-reassign": 0,
     "no-use-before-define": 0,
     "no-console": [1, { "allow": ["warn", "error"] }],
-    "react/jsx-pascal-case": [0]
+    "react/jsx-pascal-case": [0],
+    "react/jsx-props-no-spreading": 0
   },
   "settings": {
     "react": {
