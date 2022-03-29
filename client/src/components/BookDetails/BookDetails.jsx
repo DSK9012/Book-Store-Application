@@ -1,11 +1,13 @@
-import { Accordion, AccordionDetails, AccordionSummary, Grid, styled, Typography } from '@mui/material';
-import { AssignmentInd, CalendarMonth, ConfirmationNumber, Person, School, ExpandMore } from '@mui/icons-material';
+import { Grid, styled } from '@mui/material';
+import { AssignmentInd, CalendarMonth, ConfirmationNumber, Person, School } from '@mui/icons-material';
 import Header from 'components/Header/Header';
 import { $Container } from 'components/Home';
 import readingBook from 'assets/images/book-reading.jpg';
 import RenderBooks from 'components/RenderBooks';
 import RatingContainer from 'components/Utils/RatingContainer';
 import IconSet from 'components/Utils/IconSet';
+import AboutAuthor from './AboutAuthor';
+import Comments from './Comments';
 
 const $BookImg = styled('img')(({ theme }) => ({
   width: '100%',
@@ -43,12 +45,15 @@ const $BookInfoHeader = styled('div')(() => ({
 const $IconSetContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-evenly',
+  justifyContent: 'space-between',
   '& > *': {
     padding: theme.spacing(1.5),
   },
   '& .action-icon': {
     fontSize: theme.spacing(3.5),
+  },
+  '& .action-icon.outlined': {
+    color: '#595959',
   },
   '& .likes-count': {
     color: 'inherit',
@@ -70,6 +75,7 @@ const $BookInfoRow = styled('div')(({ theme }) => ({
   },
   '& .info-icon': {
     verticalAlign: 'middle',
+    color: '#787878',
   },
 }));
 
@@ -157,24 +163,8 @@ function BookDetails() {
               <$Content>#Book, #Trending, #JavaScript #Programming</$Content>
             </$TagsContainer>
           </$BookInfo>
-          <Accordion>
-            <AccordionSummary expandIcon={<ExpandMore />}>About Author</AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet
-                blandit leo lobortis eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary expandIcon={<ExpandMore />}>Comments</AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet
-                blandit leo lobortis eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
+          <AboutAuthor />
+          <Comments />
         </Grid>
         <Grid item sm={12} md={4}>
           <$BookImg src={readingBook} alt='book-img' />

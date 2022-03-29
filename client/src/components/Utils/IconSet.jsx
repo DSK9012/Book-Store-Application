@@ -51,7 +51,7 @@ export default function IconSet() {
       <$Icon className='likes'>
         <FavoriteBorderOutlined className='action-icon outlined' />
         <Favorite className='action-icon filled' htmlColor='red' />
-        <$LikesCount className='likes-count '>99</$LikesCount>
+        <$LikesCount className='likes-count'>99</$LikesCount>
       </$Icon>
       <$Icon>
         <ShareOutlined className='action-icon outlined' />

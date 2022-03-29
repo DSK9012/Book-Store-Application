@@ -5,7 +5,7 @@ function AddBook() {
   return (
     <$Container>
       <Header />
-      <h1>Book Details</h1>
+      <h1>Add Book</h1>
     </$Container>
   );
 }
