@@ -1,8 +1,7 @@
 // Copyright © Bankers Healthcare Group, Inc.  All rights reserved.
 
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 import { memo, useState } from 'react';
-import PropTypes from 'prop-types';
 
 const TextFieldMaterial = memo(
   (props) => {
@@ -20,7 +19,7 @@ const TextFieldMaterial = memo(
         {...rest}
         variant='outlined'
         fullWidth
-        size='medium'
+        size='small'
         autoComplete='off'
         onChange={handleChange}
         onBlur={() => {
@@ -46,15 +45,4 @@ const TextFieldMaterial = memo(
     previous.onChange === next.onChange
 );
 
-TextFieldMaterial.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  formatOnBlur: PropTypes.func,
-  value: PropTypes.string.isRequired,
-  error: PropTypes.bool.isRequired,
-  helperText: PropTypes.string.isRequired,
-};
-
-TextFieldMaterial.defaultProps = {
-  formatOnBlur: () => {},
-};
 export default TextFieldMaterial;

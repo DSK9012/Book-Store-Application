@@ -84,6 +84,9 @@ const theme = createTheme({
           fontSize: '16px',
           fontWeight: 500,
           fontFamily: 'AvenirNext-Medium',
+          '&.Mui-focused': {
+            color: '#70838f',
+          },
           '&$shrink, &$shrink $asterisk': {
             color: '#70838f',
             letterSpacing: '0.4px',
@@ -117,7 +120,7 @@ const theme = createTheme({
           '&:hover .MuiOutlinedInput-notchedOutline': {
             border: '2px solid #00c1d4',
           },
-          '&.MuiOutlinedInput-focused .MuiOutlinedInput-notchedOutline': {
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: '#00c1d4',
           },
           '& .MuiInputBase-input.Mui-disabled': {

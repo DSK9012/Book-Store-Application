@@ -1,9 +1,9 @@
 import { styled, Rating } from '@mui/material';
 
-export const $RatingContainer = styled('div')(({ theme }) => ({
+export const $RatingContainer = styled('div')({
   display: 'flex',
   alignItems: 'center',
-}));
+});
 
 export const $Rating = styled('p')(({ theme }) => ({
   fontSize: theme.spacing(2),
