@@ -1,8 +1,10 @@
 import { Button, Grid, styled } from '@mui/material';
-import { FileUpload } from '@mui/icons-material';
 import Header from 'components/Header/Header';
 import { $Container } from 'components/Home';
 import TextField from 'components/Form/CustomTextField';
+import UploadField from 'components/Form/UploadField';
+import useAddBookFormik from 'formik/AddBookFormik';
+import useFormikHelpers from 'components/Form/FormikHelpers';
 
 const $AddBookText = styled('h3')(({ theme }) => ({
   fontSize: theme.spacing(2.75),
@@ -12,70 +14,141 @@ const $AddBookText = styled('h3')(({ theme }) => ({
 }));
 
 function AddBook() {
+  const formik = useAddBookFormik();
+  const { handleChangeAndBlur, hasError, getHelpText } = useFormikHelpers(formik);
+
   return (
     <$Container>
       <Header />
       <$AddBookText>Add Book</$AddBookText>
       <Grid container spacing={3}>
         <Grid item sm={12} md={6}>
-          <TextField label='Book Name' />
+          <TextField
+            label='Book Name'
+            placeholder='Book Name'
+            type='text'
+            title=''
+            name='bookName'
+            value={formik.values.bookName}
+            onChange={handleChangeAndBlur('bookName')}
+            error={hasError('bookName')}
+            helperText={getHelpText('bookName')}
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <TextField label='Author' />
+          <TextField
+            label='Book Author'
+            placeholder='Book Author'
+            type='text'
+            title=''
+            name='bookAuthor'
+            value={formik.values.bookAuthor}
+            onChange={handleChangeAndBlur('bookAuthor')}
+            error={hasError('bookAuthor')}
+            helperText={getHelpText('bookAuthor')}
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <TextField label='Institute' />
+          <TextField
+            label='Institute'
+            placeholder='Institue'
+            type='text'
+            title=''
+            name='bookName'
+            value={formik.values.bookName}
+            onChange={handleChangeAndBlur('bookName')}
+            error={hasError('bookName')}
+            helperText={getHelpText('bookName')}
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <TextField label='Recommended To' />
+          <TextField
+            label='Recommended Class'
+            placeholder='Recommended Class'
+            type='text'
+            title=''
+            name='recommendedClass'
+            value={formik.values.recommendedClass}
+            onChange={handleChangeAndBlur('recommendedClass')}
+            error={hasError('recommendedClass')}
+            helperText={getHelpText('recommendedClass')}
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <TextField label='Book Edition' />
+          <TextField
+            label='Book Edition'
+            placeholder='Book Edition'
+            type='text'
+            title=''
+            name='edition'
+            value={formik.values.edition}
+            onChange={handleChangeAndBlur('edition')}
+            error={hasError('edition')}
+            helperText={getHelpText('edition')}
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <TextField label='Access Type' />
+          <TextField
+            label='Access Type'
+            placeholder='Access Type'
+            type='text'
+            title=''
+            name='accessType'
+            value={formik.values.accessType}
+            onChange={handleChangeAndBlur('accessType')}
+            error={hasError('accessType')}
+            helperText={getHelpText('accessType')}
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <TextField multiline minRows={2} label='Tags' />
+          <TextField
+            multiline
+            minRows={2}
+            label='Tags'
+            placeholder='#javascript, #java, #c#'
+            type='text'
+            title=''
+            name='tags'
+            value={formik.values.tags}
+            onChange={handleChangeAndBlur('tags')}
+            error={hasError('tags')}
+            helperText={getHelpText('tags')}
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <TextField multiline minRows={2} label='Description' />
+          <TextField
+            multiline
+            minRows={2}
+            label='Description'
+            placeholder='Description'
+            type='text'
+            title=''
+            name='description'
+            value={formik.values.description}
+            onChange={handleChangeAndBlur('description')}
+            error={hasError('description')}
+            helperText={getHelpText('description')}
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <label
-            htmlFor='upload-book-cover'
-            style={{
-              padding: '16px 0',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '4px',
-              border: '2px dashed silver',
-              minHeight: '150px',
-              cursor: 'pointer',
+          <UploadField
+            label='UPLOAD BOOK COVER'
+            name='bookCover'
+            value={formik.values.bookCover}
+            onChange={(event) => {
+              formik.setFieldValue('bookCover', event.target.files[0]);
             }}
-          >
-            <input type='file' id='upload-book-cover' hidden />
-            <FileUpload /> UPLOAD BOOK COVER
-          </label>
+          />
         </Grid>
         <Grid item sm={12} md={6}>
-          <label
-            htmlFor='upload-file'
-            style={{
-              cursor: 'pointer',
-              padding: '16px 0',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '4px',
-              border: '2px dashed silver',
-              minHeight: '150px',
+          <UploadField
+            label='UPLOAD BOOK'
+            name='bookFile'
+            value={formik.values.bookFile}
+            onChange={(event) => {
+              formik.setFieldValue('bookFile', event.target.files[0]);
             }}
-          >
-            <input type='file' id='upload-file' hidden />
-            <FileUpload /> UPLOAD FILE
-          </label>
+          />
         </Grid>
         <div style={{ padding: '32px 0', margin: '0 auto' }}>
           <Button
