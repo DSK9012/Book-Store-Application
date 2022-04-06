@@ -105,7 +105,7 @@ function AddBook() {
             multiline
             minRows={2}
             label='Tags'
-            placeholder='#javascript, #java, #c#'
+            placeholder='#javascript, #java, #c++'
             type='text'
             title=''
             name='tags'
