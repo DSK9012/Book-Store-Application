@@ -55,7 +55,7 @@ export default function IconSet() {
       </$Icon>
       <$Icon>
         <ShareOutlined className='action-icon outlined' />
-        <Share className='action-icon filled' htmlColor='#1df4f7' />
+        <Share className='action-icon filled' htmlColor='#44acba' />
       </$Icon>
     </>
   );

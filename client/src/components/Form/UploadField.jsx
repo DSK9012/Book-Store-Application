@@ -1,6 +1,8 @@
 import { FileUpload } from '@mui/icons-material';
 import { styled } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Viewer } from '@react-pdf-viewer/core';
+import { memo, useEffect, useState } from 'react';
+import { pageNavigationPlugin } from '@react-pdf-viewer/page-navigation';
 
 const $FieldArea = styled('label')(({ theme }) => ({
   display: 'flex',
@@ -10,11 +12,15 @@ const $FieldArea = styled('label')(({ theme }) => ({
   border: '2px dashed silver',
   minHeight: theme.spacing(150 / 8),
   cursor: 'pointer',
+  height: '180px',
+  overflow: 'auto',
 }));
 
-export default function UploadField(props) {
-  const { label, name, value, onChange } = props;
+function UploadField(props) {
+  const { label, name, value, onChange, accept } = props;
   const [uploadedImg, setUploadedImg] = useState();
+  const pageNavigationPluginInstance = pageNavigationPlugin();
+  const { CurrentPageLabel } = pageNavigationPluginInstance;
 
   useEffect(() => {
     if (value) {
@@ -25,6 +31,19 @@ export default function UploadField(props) {
       };
     }
   }, [value]);
+
+  if (accept === '.pdf' && value) {
+    return (
+      <$FieldArea htmlFor={name} style={{}}>
+        <Viewer fileUrl={URL.createObjectURL(value)} plugins={[pageNavigationPluginInstance]} />
+        <div>
+          <CurrentPageLabel>
+            {(currentPageProps) => <span>Total Pages : {currentPageProps.numberOfPages}</span>}
+          </CurrentPageLabel>
+        </div>
+      </$FieldArea>
+    );
+  }
 
   return (
     <$FieldArea htmlFor={name}>
@@ -41,10 +60,12 @@ export default function UploadField(props) {
         </div>
       ) : (
         <>
-          <input type='file' name={name} value={value} onChange={onChange} id={name} hidden />
+          <input type='file' name={name} value={value} onChange={onChange} id={name} hidden accept={accept} />
           <FileUpload /> {label}
         </>
       )}
     </$FieldArea>
   );
 }
+
+export default memo(UploadField);

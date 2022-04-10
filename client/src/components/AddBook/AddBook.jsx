@@ -135,6 +135,7 @@ function AddBook() {
             label='UPLOAD BOOK COVER'
             name='bookCover'
             value={formik.values.bookCover}
+            accept='image/jpg,img/jpeg,img/png,.png,.jpg,.jpeg'
             onChange={(event) => {
               formik.setFieldValue('bookCover', event.target.files[0]);
             }}
@@ -144,6 +145,7 @@ function AddBook() {
           <UploadField
             label='UPLOAD BOOK'
             name='bookFile'
+            accept='.pdf'
             value={formik.values.bookFile}
             onChange={(event) => {
               formik.setFieldValue('bookFile', event.target.files[0]);

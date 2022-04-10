@@ -95,9 +95,9 @@ const $TextContent = styled('div')(({ theme }) => ({
 const $BookStatus = styled('div')(({ theme }) => ({
   padding: theme.spacing(0.5, 1),
   width: 'fit-content',
-  backgroundColor: '#13cee9',
+  backgroundColor: '#44acba',
   marginTop: theme.spacing(1),
-  color: theme.palette.common.black,
+  color: theme.palette.common.white,
   fontSize: theme.spacing(1.75),
   borderRadius: theme.spacing(0.25),
 }));

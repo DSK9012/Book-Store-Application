@@ -45,7 +45,7 @@ const $NavLink = styled(NavLink)(({ theme }) => ({
 }));
 
 const $SignInBtn = styled('button')(({ theme }) => ({
-  backgroundColor: theme.palette.common.black,
+  backgroundColor: '#44acba',
   borderRadius: theme.spacing(0.5),
   outline: 'none',
   border: 'none',
@@ -65,7 +65,7 @@ function Header() {
       <div>
         <$NavList>
           <li>
-            <SearchOutlined sx={{ fontSize: '25px', marginTop: '8px', cursor: 'pointer' }} />
+            <SearchOutlined htmlColor='#44acba' sx={{ fontSize: '25px', marginTop: '8px', cursor: 'pointer' }} />
           </li>
           <li>
             <$NavLink to='/home' className={(navData) => (navData.isActive ? 'active' : '')}>

@@ -75,7 +75,7 @@ const $BookInfoRow = styled('div')(({ theme }) => ({
   },
   '& .info-icon': {
     verticalAlign: 'middle',
-    color: '#787878',
+    color: '#44acba',
   },
 }));
 
