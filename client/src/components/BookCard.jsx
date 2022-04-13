@@ -1,7 +1,7 @@
 import { Person, CalendarMonth } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material';
-import readingBook from 'assets/images/book-reading.jpg';
+import readingBook from 'assets/images/ordered-books.jpg';
 import RatingContainer from './Utils/RatingContainer';
 import IconSet from './Utils/IconSet';
 

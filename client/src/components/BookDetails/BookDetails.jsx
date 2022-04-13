@@ -2,7 +2,7 @@ import { Grid, styled } from '@mui/material';
 import { AssignmentInd, CalendarMonth, ConfirmationNumber, Person, School } from '@mui/icons-material';
 import Header from 'components/Header/Header';
 import { $Container } from 'components/Home';
-import readingBook from 'assets/images/book-reading.jpg';
+import readingBook from 'assets/images/js-algorithms.jpg';
 import RenderBooks from 'components/RenderBooks';
 import RatingContainer from 'components/Utils/RatingContainer';
 import IconSet from 'components/Utils/IconSet';

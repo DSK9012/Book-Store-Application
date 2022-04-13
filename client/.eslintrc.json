@@ -56,7 +56,8 @@
     "no-console": [1, { "allow": ["warn", "error"] }],
     "react/jsx-pascal-case": [0],
     "react/jsx-props-no-spreading": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/jsx-no-constructed-context-values": 0
   },
   "settings": {
     "react": {

@@ -1,6 +1,11 @@
 import { useFormik } from 'formik';
+import { useStore } from 'store/store';
 
 export default function useAddBookFormik() {
+  const {
+    booksContext: { addBook },
+  } = useStore();
+
   return useFormik({
     initialValues: {
       bookName: '',
@@ -18,6 +23,9 @@ export default function useAddBookFormik() {
     validateOnChange: true,
     validateOnBlur: true,
     validationSchema: '',
-    onSubmit: () => {},
+    onSubmit: (values, { resetForm, setSubmitting }) => {
+      setSubmitting(true);
+      addBook(values, resetForm, setSubmitting);
+    },
   });
 }
