@@ -27,8 +27,7 @@
     "test:coverage": "react-scripts test --watchAll=false --coverage",
     "lint": "eslint -c .eslintrc.json --ext .js,.jsx .",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write .",
-    "lint:staged": "lint-staged"
+    "format": "prettier --write ."
   },
   "browserslist": {
     "production": [
