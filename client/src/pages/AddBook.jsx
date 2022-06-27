@@ -1,6 +1,6 @@
 import { Button, Grid, styled } from '@mui/material';
 import Header from 'components/Header/Header';
-import { $Container } from 'components/Home';
+import { $Container } from 'pages/Home';
 import TextField from 'components/Form/CustomTextField';
 import UploadField from 'components/Form/UploadField';
 import useAddBookFormik from 'formik/AddBookFormik';

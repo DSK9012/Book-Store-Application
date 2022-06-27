@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
-import Header from './Header/Header';
-import RenderBooks from './RenderBooks';
+import Header from '../components/Header/Header';
+import RenderBooks from '../components/RenderBooks';
 
 export const $Container = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 4, 2),

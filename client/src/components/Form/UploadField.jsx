@@ -1,4 +1,4 @@
-import { FileUpload } from '@mui/icons-material';
+import { Close, CloudUpload, FileUpload } from '@mui/icons-material';
 import { styled } from '@mui/material';
 import { Viewer } from '@react-pdf-viewer/core';
 import { memo, useEffect, useState } from 'react';
@@ -14,6 +14,7 @@ const $FieldArea = styled('label')(({ theme }) => ({
   cursor: 'pointer',
   height: '180px',
   overflow: 'auto',
+  position: 'relative',
 }));
 
 function UploadField(props) {
@@ -57,11 +58,25 @@ function UploadField(props) {
           <div>
             <p>{value.name}</p>
           </div>
+          <input type='file' name={name} onChange={onChange} id={name} accept={accept} />
+          <span
+            style={{
+              position: 'absolute',
+              right: '0',
+              top: '0',
+              width: 'fit-content',
+              backgroundColor: '#dd1a1a',
+              borderBottomLeftRadius: '20px',
+              paddingLeft: '5px',
+            }}
+          >
+            <Close htmlColor='#fff' />
+          </span>
         </div>
       ) : (
         <>
           <input type='file' name={name} value={value} onChange={onChange} id={name} hidden accept={accept} />
-          <FileUpload /> {label}
+          <CloudUpload fontSize='large' /> {label}
         </>
       )}
     </$FieldArea>

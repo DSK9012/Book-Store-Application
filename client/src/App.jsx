@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router';
-import Home from 'components/Home';
-import BookDetails from 'components/BookDetails/BookDetails';
-import AddBook from 'components/AddBook/AddBook';
+import Home from 'pages/Home';
+import BookDetails from 'pages/BookDetails';
+import AddBook from 'pages/AddBook';
 
 function App() {
   return (

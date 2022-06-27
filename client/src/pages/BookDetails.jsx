@@ -1,13 +1,13 @@
 import { Grid, styled } from '@mui/material';
 import { AssignmentInd, CalendarMonth, ConfirmationNumber, Person, School } from '@mui/icons-material';
 import Header from 'components/Header/Header';
-import { $Container } from 'components/Home';
+import { $Container } from 'pages/Home';
 import readingBook from 'assets/images/js-algorithms.jpg';
 import RenderBooks from 'components/RenderBooks';
 import RatingContainer from 'components/Utils/RatingContainer';
 import IconSet from 'components/Utils/IconSet';
-import AboutAuthor from './AboutAuthor';
-import Comments from './Comments';
+import AboutAuthor from '../components/BookDetails/AboutAuthor';
+import Comments from '../components/BookDetails/Comments';
 
 const $BookImg = styled('img')(({ theme }) => ({
   width: '100%',
