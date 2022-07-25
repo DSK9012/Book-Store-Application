@@ -1,5 +1,3 @@
-// Copyright © Bankers Healthcare Group, Inc.  All rights reserved.
-
 import { string } from 'yup';
 
 const fieldBlankError = 'Field cannot be left blank.';

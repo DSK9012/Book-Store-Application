@@ -15,6 +15,8 @@ const $BookImg = styled('img')(({ theme }) => ({
   objectFit: 'fill',
   borderRadius: theme.spacing(0.5),
   border: '1.3px solid rgba(0, 56, 101, 0.1)',
+  position: 'sticky',
+  top: 0,
 }));
 
 const $BookInfo = styled('div')({
