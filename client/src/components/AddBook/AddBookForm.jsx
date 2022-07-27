@@ -40,11 +40,11 @@ function AddBookForm({ formik }) {
           placeholder='Institue'
           type='text'
           title=''
-          name='bookName'
-          value={formik.values.bookName}
-          onChange={handleChangeAndBlur('bookName')}
-          error={hasError('bookName')}
-          helperText={getHelpText('bookName')}
+          name='institute'
+          value={formik.values.institute}
+          onChange={handleChangeAndBlur('institute')}
+          error={hasError('institute')}
+          helperText={getHelpText('institute')}
         />
       </Grid>
       <Grid item sm={12} md={6}>
@@ -121,7 +121,7 @@ function AddBookForm({ formik }) {
           label='UPLOAD BOOK COVER'
           name='bookCover'
           value={formik.values.bookCover}
-          accept='image/jpg,img/jpeg,img/png,.png,.jpg,.jpeg'
+          acceptedFiles='image/jpg,img/jpeg,img/png,.png,.jpg,.jpeg'
           onChange={(event) => {
             formik.setFieldValue('bookCover', event.target.files[0]);
           }}
@@ -131,7 +131,7 @@ function AddBookForm({ formik }) {
         <UploadField
           label='UPLOAD BOOK'
           name='bookFile'
-          accept='.pdf'
+          acceptedFiles='.pdf'
           value={formik.values.bookFile}
           onChange={(event) => {
             formik.setFieldValue('bookFile', event.target.files[0]);

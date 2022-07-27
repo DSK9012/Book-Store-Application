@@ -19,7 +19,7 @@ const TextFieldMaterial = memo(
         {...rest}
         variant='outlined'
         fullWidth
-        size='small'
+        size='medium'
         autoComplete='off'
         onChange={handleChange}
         onBlur={() => {

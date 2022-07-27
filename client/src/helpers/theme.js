@@ -9,6 +9,9 @@ const theme = createTheme({
     background: {
       paper: '#fafafa',
     },
+    action: {
+      focus: '#dd1a1a',
+    },
   },
   spacing: 8,
   components: {
@@ -83,7 +86,7 @@ const theme = createTheme({
           letterSpacing: '0.16px',
           fontSize: '16px',
           fontWeight: 500,
-          fontFamily: 'AvenirNext-Medium',
+          fontFamily: 'Roboto',
           '&.Mui-focused': {
             color: '#70838f',
           },
@@ -92,7 +95,7 @@ const theme = createTheme({
             letterSpacing: '0.4px',
             lineHeight: 1.33,
             fontWeight: 500,
-            fontFamily: 'AvenirNext-Medium',
+            fontFamily: 'Roboto',
           },
           '& $asterisk': {
             color: '#00c1d4',
@@ -132,6 +135,7 @@ const theme = createTheme({
           '&$error $notchedOutline, &$error:hover $notchedOutline': {
             borderColor: '#e26262',
           },
+          fontSize: '16px',
         },
         notchedOutline: {
           borderColor: 'rgba(0, 56, 101, 0.1)',
