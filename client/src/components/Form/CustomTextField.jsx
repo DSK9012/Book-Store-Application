@@ -20,6 +20,7 @@ const TextFieldMaterial = memo(
         variant='outlined'
         fullWidth
         size='medium'
+        spellCheck='false'
         autoComplete='off'
         onChange={handleChange}
         onBlur={() => {

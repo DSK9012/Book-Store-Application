@@ -10,7 +10,8 @@ const theme = createTheme({
       paper: '#fafafa',
     },
     action: {
-      focus: '#dd1a1a',
+      focus: 'silver',
+      hover: '#dd1a1a',
     },
   },
   spacing: 8,
@@ -74,9 +75,62 @@ const theme = createTheme({
       },
     },
     MuiTypography: {
-      body2: {
-        fontWeight: 'inherit',
-        fontFamily: 'inherit',
+      styleOverrides: {
+        body2: {
+          fontWeight: 'inherit',
+          fontFamily: 'inherit',
+        },
+      },
+    },
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          color: 'silver',
+          '& .MuiSvgIcon-root': {
+            fontSize: '24px',
+          },
+          '&.Mui-checked': {
+            color: '#00c1d4',
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#00c1d4',
+          color: 'rgba(255,255,255,.9)',
+          textTransform: 'none',
+          margin: '0 8px',
+          padding: '4px 12px',
+          minWidth: '100px',
+          '&:hover': {
+            backgroundColor: '#00c1d4',
+          },
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: '16px',
+          fontWeight: 500,
+          color: '#70838f !important',
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: '14px',
+          color: '#70838f',
+          marginTop: '-4px',
+        },
+        label: {
+          paddingTop: '4px',
+          fontSize: '18px',
+          color: '#70838f',
+        },
       },
     },
     MuiInputLabel: {

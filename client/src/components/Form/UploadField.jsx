@@ -1,8 +1,6 @@
-import { Close, CloudUpload } from '@mui/icons-material';
+import { Close, CloudUpload, Task } from '@mui/icons-material';
 import { styled } from '@mui/material';
-import { Viewer } from '@react-pdf-viewer/core';
 import { memo, useEffect, useState } from 'react';
-import { pageNavigationPlugin } from '@react-pdf-viewer/page-navigation';
 
 const $FieldArea = styled('div')(({ theme }) => ({
   borderRadius: theme.spacing(0.5),
@@ -27,10 +25,14 @@ const $CloseBtn = styled('span')(({ theme }) => ({
   right: '0',
   top: '0',
   width: 'fit-content',
-  backgroundColor: theme.palette.action.focus,
   borderBottomLeftRadius: '100px',
   padding: theme.spacing(0, 0, 6 / 8, 12 / 8),
   cursor: 'pointer',
+  backgroundColor: theme.palette.action.focus,
+  transition: 'background-color .5s',
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+  },
 }));
 
 const $FileContent = styled('div')(({ theme }) => ({
@@ -49,6 +51,11 @@ const $Img = styled('img')(({ theme }) => ({
 
 const $FileInfo = styled('div')(({ theme }) => ({
   paddingLeft: theme.spacing(2),
+  fontSize: theme.spacing(2),
+}));
+
+const $FileName = styled('p')(({ theme }) => ({
+  fontWeight: 'bold',
 }));
 
 const $ChangeFileLabel = styled('label')(({ theme }) => ({
@@ -60,10 +67,8 @@ const $ChangeFileLabel = styled('label')(({ theme }) => ({
 }));
 
 function UploadField(props) {
-  const { label, name, value, onChange, acceptedFiles } = props;
-  const [uploadedImg, setUploadedImg] = useState();
-  const pageNavigationPluginInstance = pageNavigationPlugin();
-  const { CurrentPageLabel } = pageNavigationPluginInstance;
+  const { label, name, value, onChange, acceptedFiles, handleRemoveFile } = props;
+  const [uploadedFile, setUploadedImg] = useState();
 
   useEffect(() => {
     if (value) {
@@ -75,39 +80,10 @@ function UploadField(props) {
     }
   }, [value]);
 
-  if (acceptedFiles === '.pdf' && value) {
-    return (
-      <$FieldArea htmlFor={name} style={{}}>
-        <Viewer fileUrl={URL.createObjectURL(value)} plugins={[pageNavigationPluginInstance]} />
-        <div>
-          <CurrentPageLabel>
-            {(currentPageProps) => <span>Total Pages : {currentPageProps.numberOfPages}</span>}
-          </CurrentPageLabel>
-        </div>
-      </$FieldArea>
-    );
-  }
-
   return (
     <$FieldArea draggable>
       {value ? (
-        <$FileContent>
-          <$Img src={uploadedImg} alt='uploaded-img' />
-          <$FileInfo>
-            <p>{value.name}</p>
-            <p>
-              Size :{' '}
-              {value.size / 1024 < 1024
-                ? `${(value.size / 1024).toFixed(2)} KB`
-                : `${(value.size / 1024 / 1024).toFixed(2)} MB`}
-            </p>
-            <br />
-            <$ChangeFileLabel htmlFor={name}>
-              Change File
-              <input type='file' name={name} onChange={onChange} id={name} accept={acceptedFiles} hidden />
-            </$ChangeFileLabel>
-          </$FileInfo>
-        </$FileContent>
+        <UploadedFielContent data={{ ...props, uploadedFile }} />
       ) : (
         <$UploadFilePlaceholder htmlFor={name}>
           <input type='file' name={name} value={value} onChange={onChange} id={name} hidden accept={acceptedFiles} />
@@ -116,11 +92,41 @@ function UploadField(props) {
         </$UploadFilePlaceholder>
       )}
       {value && (
-        <$CloseBtn>
+        <$CloseBtn onClick={() => handleRemoveFile(name)}>
           <Close fontSize='small' htmlColor='#fff' />
         </$CloseBtn>
       )}
     </$FieldArea>
+  );
+}
+
+function UploadedFielContent(props) {
+  const {
+    data: { uploadedFile, name, onChange, acceptedFiles, value },
+  } = props;
+
+  return (
+    <$FileContent>
+      {acceptedFiles === '.pdf' ? (
+        <Task htmlColor='#b11616' style={{ height: '100%', width: 'fit-content' }} />
+      ) : (
+        <$Img src={uploadedFile} alt='uploaded-img' />
+      )}
+      <$FileInfo>
+        <$FileName>{value.name}</$FileName>
+        <p>
+          Size :{' '}
+          {value.size / 1024 < 1024
+            ? `${(value.size / 1024).toFixed(2)} KB`
+            : `${(value.size / 1024 / 1024).toFixed(2)} MB`}
+        </p>
+        <br />
+        <$ChangeFileLabel htmlFor={name}>
+          Change File
+          <input type='file' name={name} onChange={onChange} id={name} accept={acceptedFiles} hidden />
+        </$ChangeFileLabel>
+      </$FileInfo>
+    </$FileContent>
   );
 }
 

@@ -1,10 +1,23 @@
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, FormControl, RadioGroup, FormLabel, FormControlLabel, Radio, styled } from '@mui/material';
 import TextField from 'components/Form/CustomTextField';
 import UploadField from 'components/Form/UploadField';
 import useFormikHelpers from 'formik/FormikHelpers';
 
+const $ButtonContainer = styled('div')(({ theme }) => ({
+  padding: theme.spacing(4, 0),
+  margin: '0 auto',
+}));
+
 function AddBookForm({ formik }) {
   const { handleChangeAndBlur, hasError, getHelpText } = useFormikHelpers(formik);
+
+  const handleFileChange = (event) => {
+    if (event.target.files.length > 0) formik.setFieldValue(event.target.name, event.target.files[0]);
+  };
+
+  const handleRemoveFile = (field) => {
+    formik.setFieldValue(field, '');
+  };
 
   return (
     <Grid container spacing={3}>
@@ -73,18 +86,30 @@ function AddBookForm({ formik }) {
           helperText={getHelpText('edition')}
         />
       </Grid>
-      <Grid item sm={12} md={6}>
-        <TextField
-          label='Access Type'
-          placeholder='Access Type'
-          type='text'
-          title=''
-          name='accessType'
-          value={formik.values.accessType}
-          onChange={handleChangeAndBlur('accessType')}
-          error={hasError('accessType')}
-          helperText={getHelpText('accessType')}
-        />
+      <Grid item sm={12} md={6} style={{ paddingLeft: '38px' }}>
+        <FormControl>
+          <FormLabel>Access Type</FormLabel>
+          <RadioGroup row name='row-radio-buttons-group'>
+            <FormControlLabel
+              value='private'
+              checked={formik.values.accessType === 'private'}
+              onChange={() => {
+                formik.setFieldValue('accessType', 'private');
+              }}
+              control={<Radio size='small' />}
+              label='Private'
+            />
+            <FormControlLabel
+              value='public'
+              checked={formik.values.accessType === 'public'}
+              onChange={() => {
+                formik.setFieldValue('accessType', 'public');
+              }}
+              control={<Radio size='small' />}
+              label='Public'
+            />
+          </RadioGroup>
+        </FormControl>
       </Grid>
       <Grid item sm={12} md={6}>
         <TextField
@@ -122,9 +147,8 @@ function AddBookForm({ formik }) {
           name='bookCover'
           value={formik.values.bookCover}
           acceptedFiles='image/jpg,img/jpeg,img/png,.png,.jpg,.jpeg'
-          onChange={(event) => {
-            formik.setFieldValue('bookCover', event.target.files[0]);
-          }}
+          onChange={handleFileChange}
+          handleRemoveFile={handleRemoveFile}
         />
       </Grid>
       <Grid item sm={12} md={6}>
@@ -133,42 +157,23 @@ function AddBookForm({ formik }) {
           name='bookFile'
           acceptedFiles='.pdf'
           value={formik.values.bookFile}
-          onChange={(event) => {
-            formik.setFieldValue('bookFile', event.target.files[0]);
-          }}
+          onChange={handleFileChange}
+          handleRemoveFile={handleRemoveFile}
         />
       </Grid>
-      <div style={{ padding: '32px 0', margin: '0 auto' }}>
+      <$ButtonContainer>
         <Button
-          variant='contained'
           sx={{
-            fontSize: '16px',
-            padding: '2px 16px',
-            textTransform: 'none',
-            backgroundColor: '#44acba',
-            boxShadow: 'none',
-            float: 'right',
-            marginLeft: '8px',
-            minWidth: '100px',
-          }}
-        >
-          Save
-        </Button>
-        <Button
-          variant='contained'
-          sx={{
-            fontSize: '16px',
-            padding: '2px 16px',
-            textTransform: 'none',
-            backgroundColor: '#8d9090',
-            boxShadow: 'none',
-            float: 'right',
-            minWidth: '100px',
+            backgroundColor: '#70838f',
+            '&:hover': {
+              backgroundColor: '#70838f',
+            },
           }}
         >
           Cancel
         </Button>
-      </div>
+        <Button>Save</Button>
+      </$ButtonContainer>
     </Grid>
   );
 }
