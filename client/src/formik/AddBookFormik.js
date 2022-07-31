@@ -1,5 +1,7 @@
 import { useFormik } from 'formik';
+import { object } from 'yup';
 import { useStore } from 'store/Store';
+import addBookValidations from './Validations';
 
 export default function useAddBookFormik() {
   const {
@@ -22,7 +24,7 @@ export default function useAddBookFormik() {
     validateOnMount: true,
     validateOnChange: true,
     validateOnBlur: true,
-    validationSchema: '',
+    validationSchema: object(addBookValidations),
     onSubmit: (values, { resetForm, setSubmitting }) => {
       setSubmitting(true);
       addBook(values, resetForm, setSubmitting);

@@ -19,6 +19,11 @@ function AddBookForm({ formik }) {
     formik.setFieldValue(field, '');
   };
 
+  const handleSubmit = () => {
+    console.log(formik);
+    if (formik.isValid && formik.dirty) formik.submitForm();
+  };
+
   return (
     <Grid container spacing={3}>
       <Grid item sm={12} md={6}>
@@ -172,7 +177,7 @@ function AddBookForm({ formik }) {
         >
           Cancel
         </Button>
-        <Button>Save</Button>
+        <Button onClick={handleSubmit}>Save</Button>
       </$ButtonContainer>
     </Grid>
   );
