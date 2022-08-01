@@ -1,5 +1,6 @@
+import { useRef, useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { styled } from '@mui/material';
+import { styled, TextField } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
 import bookStoreLogo from 'assets/images/book-store-logo.svg';
 
@@ -56,6 +57,28 @@ const $SignInBtn = styled('button')(({ theme }) => ({
 }));
 
 function Header() {
+  const [isSearchOpened, setSearchOpened] = useState(false);
+  const searchFieldRef = useRef();
+  const [searchText, setSearch] = useState('');
+
+  const handleSearchToggle = () => {
+    setSearchOpened((prevState) => !prevState);
+  };
+
+  const handleBlur = () => {
+    if (!searchText) setSearchOpened(false);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  useEffect(() => {
+    if (isSearchOpened) {
+      searchFieldRef.current.focus();
+    }
+  }, [isSearchOpened]);
+
   return (
     <$Header>
       <$Title>
@@ -65,7 +88,38 @@ function Header() {
       <div>
         <$NavList>
           <li>
-            <SearchOutlined htmlColor='#44acba' sx={{ fontSize: '25px', marginTop: '8px', cursor: 'pointer' }} />
+            {isSearchOpened ? (
+              <TextField
+                placeholder='Book Name'
+                type='text'
+                title=''
+                name='bookName'
+                size='small'
+                value={searchText}
+                onChange={handleSearchChange}
+                onBlur={handleBlur}
+                inputRef={searchFieldRef}
+                spellCheck='false'
+                sx={{
+                  width: '400px',
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <SearchOutlined
+                      htmlColor='#44acba'
+                      sx={{ fontSize: '25px', cursor: 'pointer' }}
+                      onClick={handleSearchToggle}
+                    />
+                  ),
+                }}
+              />
+            ) : (
+              <SearchOutlined
+                htmlColor='#44acba'
+                sx={{ fontSize: '25px', marginTop: '8px', cursor: 'pointer' }}
+                onClick={handleSearchToggle}
+              />
+            )}
           </li>
           <li>
             <$NavLink to='/home' className={(navData) => (navData.isActive ? 'active' : '')}>

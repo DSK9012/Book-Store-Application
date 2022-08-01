@@ -12,14 +12,14 @@ const TextFieldMaterial = memo(
       props.onChange(event.target.value);
     };
 
-    const { formatOnBlur, ...rest } = props;
+    const { formatOnBlur, onBlur, ...rest } = props;
 
     return (
       <TextField
+        size='medium'
         {...rest}
         variant='outlined'
         fullWidth
-        size='medium'
         spellCheck='false'
         autoComplete='off'
         onChange={handleChange}
@@ -32,6 +32,10 @@ const TextFieldMaterial = memo(
 
           if (formatOnBlur) {
             formatOnBlur();
+          }
+
+          if (onBlur) {
+            onBlur();
           }
         }}
         error={props.error && isError}
