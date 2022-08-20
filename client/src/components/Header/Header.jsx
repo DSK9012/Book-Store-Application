@@ -1,8 +1,8 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { styled, TextField } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
-import bookStoreLogo from 'assets/images/book-store-logo.svg';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
 const $Header = styled('header')(({ theme }) => ({
   width: '100%',
@@ -23,6 +23,9 @@ const $Title = styled('div')({
 
 const $TitleText = styled('h3')(({ theme }) => ({
   paddingLeft: theme.spacing(1),
+  background: 'linear-gradient(to bottom right,#70838f,#70838f,#44acba, #44acba)',
+  '-webkit-background-clip': 'text',
+  '-webkit-text-fill-color': 'transparent',
 }));
 
 const $NavList = styled('ul')(({ theme }) => ({
@@ -38,10 +41,10 @@ const $NavList = styled('ul')(({ theme }) => ({
 
 const $NavLink = styled(NavLink)(({ theme }) => ({
   textDecoration: 'none',
-  color: theme.palette.common.black,
+  color: '#70838f',
   '&.active': {
     fontWeight: 'bold',
-    color: theme.palette.common.black,
+    color: '#70838f',
   },
 }));
 
@@ -56,71 +59,46 @@ const $SignInBtn = styled('button')(({ theme }) => ({
   cursor: 'pointer',
 }));
 
+const $TextField = styled(TextField)(({ theme }) => ({
+  '& .MuiOutlinedInput-notchedOutline': {
+    borderRadius: '20px',
+    border: '2px solid #00c1d4',
+  },
+}));
+
 function Header() {
-  const [isSearchOpened, setSearchOpened] = useState(false);
-  const searchFieldRef = useRef();
   const [searchText, setSearch] = useState('');
-
-  const handleSearchToggle = () => {
-    setSearchOpened((prevState) => !prevState);
-  };
-
-  const handleBlur = () => {
-    if (!searchText) setSearchOpened(false);
-  };
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   };
 
-  useEffect(() => {
-    if (isSearchOpened) {
-      searchFieldRef.current.focus();
-    }
-  }, [isSearchOpened]);
-
   return (
     <$Header>
       <$Title>
-        <img src={bookStoreLogo} alt='book-store-logo' width='80px' height='60px' />
+        <LocalLibraryIcon htmlColor='#00c1d4' fontSize='large' />
         <$TitleText>Book Store</$TitleText>
       </$Title>
       <div>
+        <$TextField
+          placeholder='Book Name'
+          type='text'
+          title=''
+          name='bookName'
+          size='small'
+          value={searchText}
+          onChange={handleSearchChange}
+          spellCheck='false'
+          sx={{
+            width: '400px',
+          }}
+          InputProps={{
+            endAdornment: <SearchOutlined htmlColor='#44acba' sx={{ fontSize: '25px', cursor: 'pointer' }} />,
+          }}
+        />
+      </div>
+      <div>
         <$NavList>
-          <li>
-            {isSearchOpened ? (
-              <TextField
-                placeholder='Book Name'
-                type='text'
-                title=''
-                name='bookName'
-                size='small'
-                value={searchText}
-                onChange={handleSearchChange}
-                onBlur={handleBlur}
-                inputRef={searchFieldRef}
-                spellCheck='false'
-                sx={{
-                  width: '400px',
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <SearchOutlined
-                      htmlColor='#44acba'
-                      sx={{ fontSize: '25px', cursor: 'pointer' }}
-                      onClick={handleSearchToggle}
-                    />
-                  ),
-                }}
-              />
-            ) : (
-              <SearchOutlined
-                htmlColor='#44acba'
-                sx={{ fontSize: '25px', marginTop: '8px', cursor: 'pointer' }}
-                onClick={handleSearchToggle}
-              />
-            )}
-          </li>
           <li>
             <$NavLink to='/home' className={(navData) => (navData.isActive ? 'active' : '')}>
               Home

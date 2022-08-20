@@ -144,6 +144,9 @@ const theme = createTheme({
           '&.Mui-focused': {
             color: '#70838f',
           },
+          '&.Mui-error': {
+            color: '#b00020',
+          },
           '&$shrink, &$shrink $asterisk': {
             color: '#70838f',
             letterSpacing: '0.4px',
@@ -179,6 +182,10 @@ const theme = createTheme({
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: '#00c1d4',
+          },
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+            outline: 'none',
+            borderColor: '#e26262',
           },
           '& .MuiInputBase-input.Mui-disabled': {
             color: '#70838f',
