@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const booksController = require("./booksController");
+const booksController = require('./booksController');
 
 // GET all books
-router.get("/fetchbooks", (req, res) => {
+router.get('/fetchbooks', (req, res) => {
   try {
     booksController.fetchBooks(
       (books) => {
@@ -14,12 +14,12 @@ router.get("/fetchbooks", (req, res) => {
       }
     );
   } catch (error) {
-    return res.status(500).json("Internal server error");
+    return res.status(500).json('Internal server error');
   }
 });
 
 // GET book details
-router.get("/fetchbookdetails/:bookId", (req, res) => {
+router.get('/fetchbookdetails/:bookId', (req, res) => {
   try {
     booksController.fetchBookDetails(
       req.params.bookId,
@@ -31,12 +31,12 @@ router.get("/fetchbookdetails/:bookId", (req, res) => {
       }
     );
   } catch (error) {
-    return res.status(500).json("Internal server error");
+    return res.status(500).json('Internal server error');
   }
 });
 
 // POST book
-router.post("/insertbook", (req, res) => {
+router.post('/insertbook', (req, res) => {
   try {
     booksController.insertBook(
       req.body,
@@ -48,12 +48,12 @@ router.post("/insertbook", (req, res) => {
       }
     );
   } catch (error) {
-    return res.status(500).json("Internal server error");
+    return res.status(500).json('Internal server error');
   }
 });
 
 // PUT book details
-router.put("/updatebook", (req, res) => {
+router.put('/updatebook', (req, res) => {
   try {
     booksController.updateBook(
       req.body,
@@ -65,12 +65,12 @@ router.put("/updatebook", (req, res) => {
       }
     );
   } catch (error) {
-    return res.status(500).json("Internal server error");
+    return res.status(500).json('Internal server error');
   }
 });
 
 // DELETE book
-router.delete("/deletebook", (req, res) => {
+router.delete('/deletebook', (req, res) => {
   try {
     booksController.deleteBook(
       req.body,
@@ -82,7 +82,7 @@ router.delete("/deletebook", (req, res) => {
       }
     );
   } catch (error) {
-    return res.status(500).json("Internal server error");
+    return res.status(500).json('Internal server error');
   }
 });
 
