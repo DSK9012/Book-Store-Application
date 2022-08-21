@@ -23,9 +23,11 @@ const $Title = styled('div')({
 
 const $TitleText = styled('h3')(({ theme }) => ({
   paddingLeft: theme.spacing(1),
-  background: 'linear-gradient(to bottom right,#70838f,#70838f,#44acba, #44acba)',
+  background: 'linear-gradient(to bottom right,#70838f,#44acba, #44acba)',
   '-webkit-background-clip': 'text',
   '-webkit-text-fill-color': 'transparent',
+  fontFamily: 'Oleo Script Swash Caps, cursive',
+  fontSize: '30px',
 }));
 
 const $NavList = styled('ul')(({ theme }) => ({
@@ -42,6 +44,7 @@ const $NavList = styled('ul')(({ theme }) => ({
 const $NavLink = styled(NavLink)(({ theme }) => ({
   textDecoration: 'none',
   color: '#70838f',
+  fontSize: theme.spacing(18 / 8),
   '&.active': {
     fontWeight: 'bold',
     color: '#70838f',
@@ -62,7 +65,7 @@ const $SignInBtn = styled('button')(({ theme }) => ({
 const $TextField = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
     borderRadius: '20px',
-    border: '2px solid #00c1d4',
+    border: '1.3px solid #70838f',
   },
 }));
 
