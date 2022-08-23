@@ -26,8 +26,12 @@ export default function useAddBookFormik() {
     validateOnBlur: true,
     validationSchema: object(addBookValidations),
     onSubmit: (values, { resetForm, setSubmitting }) => {
+      const formData = new FormData();
+      formData.append('bookCover', values.bookCover.toString());
+      formData.append('bookFile', values.bookFile.toString());
+
       setSubmitting(true);
-      addBook(values, resetForm, setSubmitting);
+      addBook({ ...values, formData }, resetForm, setSubmitting);
     },
   });
 }

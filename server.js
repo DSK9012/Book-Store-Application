@@ -17,7 +17,7 @@ app.use(morgan('dev'));
 app.use(express.json({ extended: false }));
 
 // Routes
-app.use('/api/books', ,require('./serverRoutes/books/booksRouter'));
+app.use('/api/books', require('./serverRoutes/books/booksRouter'));
 
 // Database Connection
 connectToMongoDB();

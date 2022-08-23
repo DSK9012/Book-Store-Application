@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const booksController = require('./booksController');
-const upload = multer().fields([{ name: 'bookCover' }, { name: 'bookFile' }]);
+const upload = multer();
 
 // GET all books
 router.get('/fetchbooks', (req, res) => {
@@ -30,22 +30,20 @@ router.get('/fetchbookdetails/:bookId', (req, res) => {
 });
 
 // POST book
-router.post('/insertbook', (req, res) => {
-  upload(req, res, (err) => {
-    console.log(req.files);
-    try {
-      booksController.insertBook(
-        req.body,
-        (resMsg, insertedBook) => res.status(200).json(resMsg, insertedBook),
-        (error) => res.status(400).json(error)
-      );
-    } catch (error) {
-      if (err instanceof multer.MulterError) {
-        return res.status(500).json('Unable to process uploaded files.');
-      }
-      return res.status(500).json('Internal server error');
+router.post('/insertbook', upload.fields([{ name: 'bookCover' }, { name: 'bookFile' }]), (req, res) => {
+  console.log(req.files);
+  try {
+    // booksController.insertBook(
+    //   req.body,
+    //   (resMsg, insertedBook) => res.status(200).json(resMsg, insertedBook),
+    //   (error) => res.status(400).json(error)
+    // );
+  } catch (error) {
+    if (error instanceof multer.MulterError) {
+      return res.status(500).json('Unable to process uploaded files.');
     }
-  });
+    return res.status(500).json('Internal server error');
+  }
 });
 
 // PUT book details
