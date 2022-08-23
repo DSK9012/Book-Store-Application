@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const booksController = require('./booksController');
+const upload = multer().fields([{ name: 'bookCover' }, { name: 'bookFile' }]);
 
 // GET all books
 router.get('/fetchbooks', (req, res) => {
   try {
     booksController.fetchBooks(
-      (books) => {
-        return res.status(200).json(books);
-      },
-      (error) => {
-        return res.status(404).json(error);
-      }
+      (books) => res.status(200).json(books),
+      (error) => res.status(404).json(error)
     );
   } catch (error) {
     return res.status(500).json('Internal server error');
@@ -23,12 +21,8 @@ router.get('/fetchbookdetails/:bookId', (req, res) => {
   try {
     booksController.fetchBookDetails(
       req.params.bookId,
-      (bookDetails) => {
-        return res.status(200).json(bookDetails);
-      },
-      (error) => {
-        return res.status(404).json(error);
-      }
+      (bookDetails) => res.status(200).json(bookDetails),
+      (error) => res.status(404).json(error)
     );
   } catch (error) {
     return res.status(500).json('Internal server error');
@@ -37,19 +31,21 @@ router.get('/fetchbookdetails/:bookId', (req, res) => {
 
 // POST book
 router.post('/insertbook', (req, res) => {
-  try {
-    booksController.insertBook(
-      req.body,
-      (resMsg, insertedBook) => {
-        return res.status(200).json(resMsg, insertedBook);
-      },
-      (error) => {
-        return res.status(400).json(error);
+  upload(req, res, (err) => {
+    console.log(req.files);
+    try {
+      booksController.insertBook(
+        req.body,
+        (resMsg, insertedBook) => res.status(200).json(resMsg, insertedBook),
+        (error) => res.status(400).json(error)
+      );
+    } catch (error) {
+      if (err instanceof multer.MulterError) {
+        return res.status(500).json('Unable to process uploaded files.');
       }
-    );
-  } catch (error) {
-    return res.status(500).json('Internal server error');
-  }
+      return res.status(500).json('Internal server error');
+    }
+  });
 });
 
 // PUT book details
@@ -57,12 +53,8 @@ router.put('/updatebook', (req, res) => {
   try {
     booksController.updateBook(
       req.body,
-      (books) => {
-        return res.status(200).json(books);
-      },
-      (error) => {
-        return res.status(400).json(error);
-      }
+      (books) => res.status(200).json(books),
+      (error) => res.status(400).json(error)
     );
   } catch (error) {
     return res.status(500).json('Internal server error');
@@ -74,12 +66,8 @@ router.delete('/deletebook', (req, res) => {
   try {
     booksController.deleteBook(
       req.body,
-      (books) => {
-        return res.status(200).json(books);
-      },
-      (error) => {
-        return res.status(404).json(error);
-      }
+      (books) => res.status(200).json(books),
+      (error) => res.status(404).json(error)
     );
   } catch (error) {
     return res.status(500).json('Internal server error');

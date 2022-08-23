@@ -11,6 +11,8 @@
   },
   "rules": {
     "linebreak-style": 0,
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "import/newline-after-import": 0,
+    "consistent-return": 0
   }
 }
