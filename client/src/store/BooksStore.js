@@ -6,14 +6,12 @@ export const booksStoreInitialState = {
 
 export default function booksStore() {
   const addBook = async (data, resetForm, setSubmitting) => {
-    console.log(data);
-    const res = await axios({
-      method: 'post',
-      url: '/api/books/insertbook',
-      data,
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-    console.log(res.data);
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+    const res = await axios.post('api/books/insertbook', data);
   };
 
   return {

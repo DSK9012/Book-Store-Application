@@ -30,8 +30,9 @@ router.get('/fetchbookdetails/:bookId', (req, res) => {
 });
 
 // POST book
-router.post('/insertbook', upload.fields([{ name: 'bookCover' }, { name: 'bookFile' }]), (req, res) => {
-  console.log(req.files);
+router.post('/insertbook', upload.array('pics', 2), (req, res) => {
+  console.log('COMING');
+  console.log('Files', req.files, req.body);
   try {
     // booksController.insertBook(
     //   req.body,
@@ -39,6 +40,7 @@ router.post('/insertbook', upload.fields([{ name: 'bookCover' }, { name: 'bookFi
     //   (error) => res.status(400).json(error)
     // );
   } catch (error) {
+    console.log('ERRPR');
     if (error instanceof multer.MulterError) {
       return res.status(500).json('Unable to process uploaded files.');
     }
