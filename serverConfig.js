@@ -1,4 +1,4 @@
-const { MONGO_USER, MONGO_PASSWORD, MONGO_URL, MONGO_PORT, MONGO_DB_NAME, SERVER_PORT } = process.env;
+const { MONGO_USER, MONGO_PASSWORD, MONGO_URL, MONGO_DB_NAME, SERVER_PORT } = process.env;
 
 module.exports = {
   mongoUrl: MONGO_URL,
