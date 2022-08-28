@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const User = require('./userEntity');
-const auth = require('../../middlewares/authToken');
+const auth = require('../../../middlewares/authToken');
 
 //  @route GET /user
 //  @desc Get and verify user on every req
