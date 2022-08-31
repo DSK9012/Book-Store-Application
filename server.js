@@ -19,6 +19,7 @@ app.use(express.json({ extended: false }));
 
 // Routes
 app.use('/api/books', require('./routes/books/booksRouter'));
+app.use('/api', require('./routes/users/userRouter'));
 
 // Database Connection
 connectToMongoDB();

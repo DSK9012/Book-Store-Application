@@ -20,7 +20,7 @@ const userController = {
       errorCB({ errors: errors.array() });
       // return res.status(400).json({ errors: errors.array() });
     }
-    const { username, email, password, cpassword } = req.body;
+    const { name, email, password, cpassword } = req.body;
 
     try {
       // see user existed or not
@@ -38,7 +38,7 @@ const userController = {
 
       // creating user object
       const user = new User({
-        username,
+        name,
         email,
         password,
       });
@@ -54,7 +54,7 @@ const userController = {
       const payload = {
         user: {
           id: user.id,
-          name: user.username,
+          name: user.name,
         },
       };
 

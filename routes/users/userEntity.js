@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const userEntity = mongoose.Schema({
-  userName: {
+  name: {
     type: String,
     default: '',
     require: true,
     trim: true,
   },
-  userMail: {
+  email: {
     type: String,
     default: '',
     trim: true,
@@ -20,18 +20,18 @@ const userEntity = mongoose.Schema({
     require: true,
     default: '',
   },
-  userInstitute: {
+  institute: {
     type: String,
     trim: true,
     default: '',
   },
-  userStandard: {
+  standard: {
     type: String,
     trim: true,
     default: '',
   },
-  userImgName: {
-    type: String,
+  avatar: {
+    type: Buffer,
     trim: true,
     default: '',
     alias: 'avatar',
